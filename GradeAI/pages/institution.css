@@ -1,0 +1,86 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 14vh;
+    background-color: #16588E;
+    padding: 4%;
+    margin-bottom: 10vh;
+    color: white;
+}
+a {
+    text-decoration: none;
+}
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 5vw; /* adjust as needed */
+}
+#profile{
+    width: 6vh;
+}
+h1{
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+.page-main{
+    display: inline-flex;
+    /*background-color: darkblue;*/
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+    padding-bottom: 2vh;
+    padding-right: 3vw;
+    padding-left: 3vw;
+}
+.page-sidebar{
+    display: block;
+    align-items: center;
+    border: solid 0.7vh #000;
+    border-radius: 5vh;
+    height: 65vh;
+    margin-top: 0vh;
+    width: 25vw;
+    background-color: #16588E;
+    color: white;
+}
+.greet{
+    font-size: 5.8vh;            /*fix*/
+    margin-top: 15vh;
+    text-align: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-left: 2vh;
+    margin-right: 2vh;
+}
+.createButton{
+    font-size: 3vh;            /*fix*/
+    justify-content: center;
+    align-items: center;
+    border-radius: 4vw;
+    padding-left: 4vw;
+    padding-right: 4vw;
+    margin-left: 6vw;
+    margin-top: 5vh;
+}
+
+
+.tbl{
+  width:70%;
+  table-layout: fixed;
+  border-spacing: 0 5px;
+  /*background-color: black;*/
+  align-items: center;
+  background: linear-gradient(to right, #154164, #5988b1);
+  font-family: 'Roboto', sans-serif;
+  border-radius: 20px; /* Add this line */
+  height: fit-content;
+  margin: 0 auto;
+  
+  
+}
+

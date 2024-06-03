@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GradeAI | Student</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css" href="student.css">
+    <link rel="icon" href="assets/favico.png">
+</head>
+
+<body>
+
+  <div class="header">
+    <a href="../index.html" target="_blank">
+      <h1>GradeAI</h1>
+    </a>
+    <div class="header-right">
+      <img id="profile" src="assets/student.png" alt="user">
+      <h2 id="userName"></h2>
+      <script>
+        document.getElementById("userName").textContent = sessionStorage.getItem("user")+' | '+sessionStorage.getItem("institution");
+      </script>
+      <button class="btn btn-danger" type="button" id="signoutbutton">
+        Sign Out
+      </button>
+    </div>
+  </div>
+
+
+  
+  <div class="table-container">
+    <div class="header-row row">
+      <span class="cell primary">EXAM NAME<i class="fa fa-fw fa-sort"></i></span>
+      <span class="cell">TOTAL MARKS<i class="fa fa-fw fa-sort"></i></span>
+      <span class="cell">YOUR MARKS<i class="fa fa-fw fa-sort"></i></span>
+      <span class="cell">GRADE<i class="fa fa-fw fa-sort"></i></span>
+      <span class="cell">DETAILED RESULTS</a></span>
+    </div>
+    <div class="row">
+      <span class="cell" data-label="Vehicle">DisasterMan</span>
+      <span class="cell" data-label="Exterior">40</span>
+      <span class="cell" data-label="Interior">30</span>
+      <span class="cell" data-label="Engine">A</span>
+      <span class="cell" data-label="Trans"><img width="25" src="https://cdn0.iconfinder.com/data/icons/feather/96/591256-link-512.png"></span>
+    </div>
+  </div>  
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script type="module">
+
+       //firebase config data was here!!
+  </script>
+
+
+  <script>  // to ensure valid session and signout button functionality (can be used in all pages)
+    var jwt = sessionStorage.getItem("jwt");
+    console.log(jwt);
+
+    //to ensure valid session
+    window.addEventListener('load', function() {
+      if (!sessionStorage.getItem("jwt")) {
+        alert("You are not signed in!");
+        //window.location.href = "signin.html";
+      }
+    });
+
+    //signout button functionality
+    document.getElementById("signoutbutton").addEventListener("click", function() {
+      sessionStorage.removeItem("institution");
+      sessionStorage.removeItem("user");
+      sessionStorage.removeItem("jwt");
+      window.location.href = "signin.html";
+    });
+  </script>
+
+  
+  <script>
+    // Send a GET request to the server when the page loads
+    $(document).ready(function() {
+
+      var institution = sessionStorage.getItem("institution");
+      
+      $.ajax({
+        url: 'http://127.0.0.1:8000/view/student/'+institution,
+        method: 'GET',
+        headers: {
+          'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+        },
+        success: function(data) 
+        {
+          // Fill the table with the response
+          data.forEach(function(item) {
+            var row = $('<div class="row"></div>');
+            row.append('<span class="cell" data-label="Exam Name">' + item[0] + '</span>');
+            row.append('<span class="cell" data-label="Total Marks">' + item[1] + '</span>');
+            row.append('<span class="cell" data-label="Your Marks">' + item[2] + '</span>');
+            row.append('<span class="cell" data-label="Grade">' + item[3] + '</span>');
+            row.append('<span class="cell" data-label="Detailed Results"><a href="' + item[4] + '"><img width="25" src="https://cdn0.iconfinder.com/data/icons/feather/96/591256-link-512.png"></a></span>');
+            $('.table-container').append(row);
+          });
+          
+        } //end success
+      });//end ajax
+    });//end document.ready
+  </script>
+
+
+</body>
+</html>

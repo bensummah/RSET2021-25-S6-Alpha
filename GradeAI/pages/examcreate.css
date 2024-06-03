@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+:root {
+    --primary-color: #81C4FF;
+    --secondary-color: #16588E;
+    --black: #000000;
+    --white: #ffffff;
+    --gray: #efefef;
+    --gray-2: #757575;
+}
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+.input-box::placeholder{
+    color: black;
+}
+
+.examForm{
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    border-bottom-left-radius: 70px;
+    border-bottom-right-radius: 70px; 
+    padding: 2%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 5vh;
+}
+.examForm input, .examForm button {
+    flex-grow: 1;
+    margin: 0.5em;
+}
+.shortButton{
+    border: 1px solid white;
+    border-radius: 50px;
+    font-size: 3.5vh;
+}
+
+.dynamicForm{
+    padding: 3vh 3vw;
+    margin: 5vh 5vw;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+}
+
+.longButton{
+    width: 40vw;
+    height: 8vh;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3px;
+    border-radius: 50px;
+    font-size: 3.5vh;
+
+}
+
+.submitAnswer{
+    justify-content: end;
+    border-radius: 50%;
+}
+
+.input-box{
+    background: rgba(255,255,255,0.7);
+    border: 1px solid white;
+    border-radius: 5px;
+    max-width: 15vw;
+    height: 8vh;   
+    text-align: center;
+    font-size: 3.5vh;
+}
+
+.qstn-box{
+    background: rgba(255,255,255,0.7);
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 82vw;
+    scrollbar-width: none;
+
+}
+
+.key-box{
+    background: rgba(255,255,255,0.7);
+    width: 82vw;
+    height: 20vh;
+    border: 1px solid black;
+    border-radius: 5px;
+    scrollbar-width: none;
+}
+
+.number-box{
+    background: rgba(255,255,255,0.7);
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 5vw;
+}
+
+
+h2{
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+
+input[type="file"] {
+    min-width: 300px; /* or any other value that suits your design */
+    left: 10vw;
+}
