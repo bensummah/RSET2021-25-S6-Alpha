@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>food kandupidikkal</title>
+    </head>
+
+    <body>
+        <h1>this is a test</h1>
+
+        <form action='/' method="post" enctype="multipart/form-data">
+            <input class="form-control" type="file" name="image-file">
+            <br>
+            <input class="btn" type="submit" value="press">
+            
+        </form>
+
+        {% if prediction %}
+            <p>{{prediction}}</p>
+        {% endif %}
+    </body>
+
+    <style>
+        .btn{
+            border-radius: 25%;
+            
+        }    
+    </style>
+</html>

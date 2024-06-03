@@ -1,0 +1,162 @@
+body {
+    background-color:black;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    margin: 20px;
+}
+
+.container1 {
+    background-color: black;
+    background-clip: padding-box;
+    padding-left: 200px;
+    padding-right: 200px;
+    display:inline-table;
+    align-items: center;
+    margin: 20px;
+}
+
+.image-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.image-section h1 {
+    color:white;
+    font: bolder;
+    margin-bottom: 10px;
+}
+
+.image-section {
+    text-align: center; 
+}
+
+.image-section b {
+    color: white;
+    font: bolder;
+    margin-bottom: 10px;
+    font-size: 20px;
+    display: block;
+}
+
+
+.image-section h4 {
+    color:white;
+    font: bolder;
+    font-size: 70px;
+    margin-bottom: 100px;
+    margin-top: 30px;
+}
+
+.ingredients {
+    color:white;
+    background-color: black;
+    background-clip: padding-box;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 27px;
+    padding-bottom: 50px;
+    display:inline-table;
+    align-items: self-start;
+}
+
+.ingredients h3{
+    font-size: 30px;
+}
+
+.ingredients h5{
+    font-size: 20px;
+}
+.nutritional-facts {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    width: 500px;
+}
+
+.nutritional-facts h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.info-section {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.info-section_carb {
+    color:rgb(167, 167, 32) ;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.info-section_pro {
+    color:rgb(231, 129, 129) ;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.info-section_fat {
+    color:rgb(196, 116, 225) ;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 3px;
+}
+
+li {
+    margin-bottom: 40px; /* Adjust the margin as needed */
+}
+
+
+.pie-chart-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    height: 400px;
+    width: 400px;
+}
+
+.pie-chart {
+    position: relative;
+    width: 50vh;
+    height: 50vh;
+    border-radius: 50%;
+    background-color: #1ddd0f;
+    text-align: center;
+    background:repeating-conic-gradient(
+        from 0deg,
+        rgb(242, 242, 124) 0deg calc(3.6deg * 47),
+        rgb(231, 129, 129) calc(3.6deg * 47) calc(3.6deg * 67),
+        rgb(196, 116, 225) calc(3.6deg * 67) calc(3.6deg * 100)
+
+    );
+    
+}
+
+.img-display{
+    height: 600px;
+    width: 600px;
+}
+
+.pie-image{
+    height: 450px;
+    width: 500px
+}

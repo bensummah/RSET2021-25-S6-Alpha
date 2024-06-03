@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ prediction }} Nutrition Facts</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/bir.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="image-section">
+            {% for row in data %} 
+            <h4>FOOD SHAZAM</h4>
+            <h1>{{row[1] }}</h1>
+            <img class="img-display" src="{{ url_for('static', filename='styles/%s.png' % prediction) }}">
+            <b>*per 100g of food item</b>
+
+        </div>
+    </div>
+    <div class="container1">
+        
+        <div class="nutritional-facts">
+            <h2>Nutritional Facts</h2>
+            <div class="info-section">
+                <p>Calories</p>
+                <p>{{ row [6] }} kcal</p>
+            </div>
+            <div class="info-section">
+                <p>Sugar Content</p>
+                <p>{{ row[4] }} g</p>
+            </div>
+            <div class="info-section_carb">
+                <p>Carbohydrates</p>
+                <p>{{ row[2] }} g</p>
+            </div>
+            <div class="info-section_pro">
+                <p>Protein</p>
+                <p>{{ row[5] }} g</p>
+            </div>
+            <div class="info-section_fat">
+                <p>Fat</p>
+                <p>{{ row[4] }} g</p>
+            </div>
+            <!-- {% endfor %} -->
+            <div class="pie-chart-container">
+                <img class="pie-image" src="{{ url_for('static', filename='styles/pie_chart.png') }}" alt="Pie Chart">
+            </div>
+            
+            <p>(in a 100g meal)</p>
+        </div>
+    </div>
+
+
+    <div class="ingredients">
+        <h3>
+            Basic Ingredients 
+        </h3>
+        <ul>
+            {% for ingredient in ingredients %}
+                <li fontsize="20px"><h5>{{ ingredient }}<br></h5></li>
+            {% endfor %}
+        </ul>
+    </div>
+   
+</body>
+</html>

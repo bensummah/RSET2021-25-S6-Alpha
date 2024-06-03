@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static',filename='styles/logo.jpg') }}">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/imgupd.css') }}">
+    <title>FOOD SHAZAM</title>
+    <style>
+        #top-right-h1 {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        #top-right-h1 input[type="text"] {
+            padding: 6px 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+
+        #top-right-h1 input[type="submit"] {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="top-right-h1">
+        <input type="text" id="food_name" name="food_name">
+        <input type="submit" value="Search">
+    </h1>
+
+    <div class="head">
+        <h2> SERVICES </h2>
+        <p>At Food Shazam, we are committed to providing exceptional service to our customers. we</p>
+        <p>understand that your health is your top priority, and we are here to help you achieve your goals.</p>
+        <h4 style="font-size:36px;">Image Analysis</h4>
+        <p> Our image analysis service allows you to upload a picture of your food and receive an </p>
+        <p>accurate nutritional graph, ingredients list, and health rating.</p>
+    </div>
+
+    <div class="container">
+        <input type="file" class="form-control"  id="file" accept="image/*" hidden>
+        <div class="img-area" data-img="">
+            <i class='bx bxs-cloud-upload icon'></i>
+            <h3>Upload Image</h3>
+            <p>Image size must be less than <span>2MB</span></p>
+        </div>
+        <form action='/' method="post" enctype="multipart/form-data">
+            <input class="form-control" type="file" id="image-file" name="image-file" hidden>
+            <button class="select-image" type="button">Select Image</button>
+            <input class="select-image" type="submit" value="Upload Image">
+        </form>
+    </div>
+
+    <script src="{{ url_for('static',filename='js/imgupd.js') }}"></script>
+</body>
+</html>
