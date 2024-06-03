@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--to make website responsive-->
+    <title>SerenadeBot</title>
+    <link rel="stylesheet" href="/static/styles/maincss.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body>
+    
+    <section class="header">        
+        <nav>
+            <div class="nav-opt"><!--navigation options-->
+                
+                    <a href="{{ url_for('home') }}">HOME</a>
+                    <a href="{{ url_for('about_us') }}">ABOUT</a>
+                    <a href="{{ url_for('contact_us') }}">CONTACT</a>  
+
+            </div>
+        </nav>
+        <img class="heroimg" src="/static/images/bghero.gif">
+        <div class="text-in-header">
+            <h3>Introducing</h3>
+            <h2>SerenadeBot</h2>
+            <p>Tune into Your Emotions: Where Music Meets Mood.</p>
+            
+        
+            
+            <button onclick="scrollToChat()" class="lets-chat" role="button">Let's Chat</button>
+        </div>
+ 
+    </section>
+    
+    <section class="msger">
+        <header class="msger-header">
+          <div class="msger-header-title">
+            <i class="fas fa-music"></i> SerenadeBot <i class="fas fa-music"></i>
+          </div>
+        </header>
+    
+        <main class="msger-chat">
+          <div class="msg left-msg">
+            <div class="msg-img" style="background-image: url(/static/images/robot-assistant.png)"></div>
+    
+            <div class="msg-bubble">
+              <div class="msg-info">
+                <div class="msg-info-name">Serenadebot</div>
+                <div class="msg-info-time"></div>
+              </div>
+    
+              <div class="msg-text">
+                Hi, welcome to SerenadeBot! Go ahead and send me a message. 😄
+              </div>
+            </div>
+          </div>
+    
+        </main>
+    
+        <form class="msger-inputarea">
+          <input type="text" class="msger-input" id="textInput" placeholder="Enter your message...">
+          <button type="submit" class="msger-send-btn"><img src="/static/images/send.png" alt=""></button>
+        </form>
+
+        
+      </section>
+      <button onclick="getEmotionCounts()"  class="song-recom" role="button">Recommend Songs</button>
+      <button onclick="scrollToHome()" class="scrollup">
+        <img src="/static/images/scrollup.png" alt="Button description">
+      </button>
+      
+      
+     
+      <div class="recommended-songs"  id="showreco">
+      
+        <div class="input-container">
+          <div class="label-text">Emotion Detected:</div>
+          <input type="text" class="predominant-emotion" id="predominantEmotion" readonly>
+        </div>
+       
+        
+       <div class="recommended">
+        <header class="msger-header">
+          <div class="msger-header-title">
+            <i class="fas fa-music"></i> Recommended Songs <i class="fas fa-music"></i>
+          </div>
+        </header>
+        <div class="songs">
+          <ul id="recommendedTracksList"></ul>
+        </div>
+      
+    </div>
+    <button onclick="scrollToHome()" class="scrollup2">
+      <img src="/static/images/scrollup.png" alt="Button description">
+    </button>
+  
+
+  <script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
+  <script>
+
+    const msgerForm = get(".msger-inputarea");
+    const msgerInput = get(".msger-input");
+    const msgerChat = get(".msger-chat");
+
+    var div=document.getElementById('showreco')
+    var display=0;
+
+
+
+    // Function to display recommended tracks based on emotion
+    function displayRecommendedTracks(tracks) {
+        const recommendedTracksList = document.getElementById("recommendedTracksList");
+        recommendedTracksList.innerHTML = ""; // Clear previous tracks
+/*
+        tracks.forEach(track => {
+            const trackItem = document.createElement("li");
+            trackItem.textContent = `${track.name} - ${track.artist.name}`;
+            recommendedTracksList.appendChild(trackItem);
+            });
+*/
+        tracks.forEach(track => {
+            const trackItem = document.createElement("li");
+            const trackLink = document.createElement("a");
+            const artistName = track.artist || "Unknown Artist"; // Handle missing artist name
+            const trackName = track.name || "Unknown Track"; // Handle missing track name
+
+            trackLink.textContent = `${trackName} - ${artistName}`;
+            trackLink.href = track.url;
+            trackLink.target = "_blank"; // Open link in new tab
+
+            trackItem.appendChild(trackLink);
+            recommendedTracksList.appendChild(trackItem);
+        });
+        }
+
+    function getEmotionCounts() {
+      var recommendedSongs = document.getElementById('showreco');
+      if (recommendedSongs.style.display === 'block') {
+        recommendedSongs.style.display = 'none';
+      } else {
+        recommendedSongs.style.display = 'block';
+        // Scroll to the recommended songs section
+        recommendedSongs.scrollIntoView({ behavior: 'smooth' });
+      }
+    $.ajax({
+      url: "/get_emotion_counts",
+      type: "GET",
+      success: function(response) {
+        
+        const predominantEmotion = response.emotion;
+        document.getElementById("predominantEmotion").value = predominantEmotion;
+        // Call function to search and display recommended tracks
+        searchAndDisplayTracks();
+
+      },
+      error: function(error) {
+        console.log("Error getting emotion counts:", error);
+      }
+    });
+
+   
+  }
+
+  // Function to search and display recommended tracks based on predominant emotion
+  function searchAndDisplayTracks() {
+        const predominantEmotion = document.getElementById("predominantEmotion").value;
+        if (predominantEmotion) {
+            $.ajax({
+                url: `/search_tracks?emotion=${predominantEmotion}`,
+                type: "GET",
+                success: function(tracks) {
+                    displayRecommendedTracks(tracks);
+                },
+                error: function(error) {
+                    console.log("Error searching tracks:", error);
+                }
+            });
+        }
+        }
+
+    // Icons made by Freepik from www.flaticon.com
+    const BOT_IMG = "/static/images/robot-assistant.png";
+    const PERSON_IMG = "/static/images/user.png";
+    const BOT_NAME = "    SerenadeBot";
+    const PERSON_NAME = "You";
+    
+
+    msgerForm.addEventListener("submit", event => {
+      event.preventDefault();
+
+      const msgText = msgerInput.value;
+      if (!msgText) return;
+
+      appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
+      msgerInput.value = "";
+      botResponse(msgText);
+    });
+
+    function appendMessage(name, img, side, text) {
+  
+      const msgHTML = `
+<div class="msg ${side}-msg">
+  <div class="msg-img" style="background-image: url(${img})"></div>
+
+  <div class="msg-bubble">
+    <div class="msg-info">
+      <div class="msg-info-name">${name}</div>
+      <div class="msg-info-time">${formatDate(new Date())}</div>
+    </div>
+
+    <div class="msg-text">${text}</div>
+  </div>
+</div>
+`;
+
+      msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+      msgerChat.scrollTop += 500;
+    }
+
+
+    function botResponse(rawText) {
+
+      // Bot Response
+      $.get("/get", { msg: rawText }).done(function (data) {
+        console.log(rawText);
+        console.log(data);
+        const msgText = data;
+        appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
+
+      });
+
+    }
+
+
+    // Utils
+    function get(selector, root = document) {
+      return root.querySelector(selector);
+    }
+
+    function formatDate(date) {
+      const h = "0" + date.getHours();
+      const m = "0" + date.getMinutes();
+
+      return `${h.slice(-2)}:${m.slice(-2)}`;
+    }
+
+    function scrollToChat() {
+      const lastMessage = msgerChat.lastElementChild;
+      lastMessage.scrollIntoView({ behavior: "smooth" });
+  }
+  function scrollToHome() {
+    // Hide the recommended section
+    var recommendedSongs = document.getElementById('showreco');
+    recommendedSongs.style.display = 'none';
+
+    // Scroll to the top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+ </script>
+
+</body>
+
+</html>
