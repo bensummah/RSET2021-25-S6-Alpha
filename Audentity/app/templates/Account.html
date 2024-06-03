@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>Account-Settings</title>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Account Settings</title>
+</head>
+<body class="accounts">
+    <div class="account-card">
+        <h2>Update Account Information</h2>
+
+        <form id="update-form">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" value="{{ username }}">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="{{ email }}">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">New Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter new password">
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password">
+            </div>
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>  <nav>
+    <ul class="nav-links">
+        <li><a href="/main">Home</a></li>
+        <li><a href="/about_us">About Us</a></li>
+        <li><a href="/history">History</a></li>
+    </ul>
+    <div class="account-text">
+        <i class="fa-solid fa-user"></i> </div>
+</nav>
+
+
+      
+</body>
+</html>  

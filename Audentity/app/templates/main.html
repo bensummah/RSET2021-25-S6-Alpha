@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>Audentify</title>
+</head> 
+<body class="Realtime">
+  <div>
+    <h1><span>Identify</span> Genre in Seconds.</h1>
+  </div>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="flashes">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  <input class="search" type="text" placeholder="🔎...Search...">
+    <div class="realtime-listen">
+      <button class="realtime-b" type="button" id="realtimebutton">Listen now</button>
+      <span class="or-text">or</span>
+      <form enctype="multipart/form-data">
+        <input type="file" id="fileInput" name="filename" style="display: none;"> 
+        <button class="upload-b" type="button" id="uploadButton">Upload</button>
+    </form>
+    </div>
+<nav class="main-page"> 
+  <ul class="nav-links">
+    <li><a href="/main">Home</a></li>
+    <li><a href="/about_us">About Us</a></li>
+    <li><a href="/history">History</a></li>
+  </ul>
+  <a href="/account" class="account-link"> <i class="fa-solid fa-user"></i></a> 
+</nav>
+
+ <script src="{{ url_for('static', filename='script3.js') }}"></script> </body>
+
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>History</title>
+</head>
+
+<body>
+
+    <nav>
+    <ul class="nav-links">
+        <li><a href="/main">Home</a></li>
+        <li><a href="/about_us">About Us</a></li>
+        <li><a href="/history">History</a></li>
+      </ul>
+      <div class="account-text">
+        <i class="fa-solid fa-user"></i>
+      </div>
+        </nav>
+
+    <div class="history-header">
+        <h1>History</h1>
+    </div>
+
+    <div class="history-container">
+        <table class="history-table">
+            <thead>
+                <tr>
+                    <th>File Name</th>
+                    <th>Predicted Genre</th>
+                    <th>Timestamp</th>  
+                </tr>
+            </thead>
+            <tbody>
+                {% if history %}
+                    {% for search, genre, timestamp in history %} 
+                        <tr>
+                            <td>{{ search }}</td>
+                            <td>{{ genre }}</td>
+                            <td>{{ timestamp.strftime('%Y-%m-%d %H:%M') }}</td>    
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3" style="text-align: center;">No search history yet.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
