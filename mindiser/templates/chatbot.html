@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Interface</title>
+    <link rel="stylesheet" href="static/css/mind1.css">
+</head>
+<body>
+    <div class="container">
+        <div class="chat-window">
+            <div class="chat-log" id="chat-log"></div>
+            <input type="text" id="user-input" placeholder="Type your message here...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <script>
+        function sendMessage() {
+            var userInput = document.getElementById("user-input").value;
+            appendMessage("You", userInput);
+            
+            // Send user input to backend
+            fetch('http://127.0.0.1:5000/process-message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: userInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                appendMessage("Mindiser", data.bot_response);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+            document.getElementById("user-input").value = "";
+        }
+
+        function appendMessage(sender, message) {
+            var chatLog = document.getElementById("chat-log");
+            var messageElement = document.createElement("div");
+            messageElement.innerHTML = "<strong>" + sender + ":</strong> " + message;
+            chatLog.appendChild(messageElement);
+            chatLog.scrollTop = chatLog.scrollHeight;
+        }
+    </script>
+</body>
+</html>

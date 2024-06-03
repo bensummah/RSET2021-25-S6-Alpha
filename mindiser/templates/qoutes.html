@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3D Glassmorphism</title>
+    <link rel="stylesheet" href="static/css/quotes.css">
+</head>
+<style>
+    /* Add spacing between the card div and the new text */
+    .new-text {
+    margin-top: -280px; /* Adjust this value to change the spacing */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    position: absolute;
+    font-size: 25px;
+    left: 5%;
+    right:50%;
+}
+
+
+.scrollable-content {
+    max-height: 20px; /* Adjust the max-height as needed */
+    overflow-y: auto;
+    
+}
+.bottom-right-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 5px;
+    padding: 10px;
+}
+.bottom-right-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #f5d7f2; /* Blue color */
+    color: #3e3e3e; /* White text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.bottom-right-button:hover {
+    background-color: #caeaf7; /* Darker blue color on hover */
+}
+</style>
+<body>
+    <div class="box">
+        <div class="elements bg"></div>
+            
+        <div class="elements imgBx">
+            <img src="static/css/for.webp">
+        </div>
+        <div class="elements name">
+            <h2>Lauren Fogel Mersy</h2>
+        </div>
+        <div class="elements content">
+            <p>Being able to be your true self is one of the strongest components of good mental health. “All stress, anxiety, depression, is caused when we ignore who we are, and start living to please others.”</p>
+        </div>
+        
+        <div class="card"></div>
+        
+    </div>
+    <div class="scrollable-content">
+    <p class="new-text">WAYS TO LEAD A HAPPIER LIFE<br><br>
+        "Happiness is a journey, not a destination." <br><br>
+        Happiness is a term that encompasses positive feelings such as joy, satisfaction, pleasure, peace of mind and euphoria.
+    
+    <br><br>1.Socialise
+    <br><br>2.Reframe negative thoughts 
+<br><br>3.Smile
+<br><br>4.Take care of yourself 
+<br><br>5.Exercise & Meditation
+</p>
+    
+</div>
+<button class="bottom-right-button" onclick="window.location.href = '\home';">HOME</button>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js" integrity="sha512-RX/OFugt/bkgwRQg4B22KYE79dQhwaPp2IZaA/YyU3GMo/qY7GrXkiG6Dvvwnds6/DefCfwPTgCXnaC6nAgVYw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        VanillaTilt.init(document.querySelector(".box"), {
+            max: 15,
+            speed: 400,
+            glare: true,
+        });
+    </script>
+</body>
+</html>

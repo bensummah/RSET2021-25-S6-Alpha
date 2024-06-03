@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Chat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-t9YJ+GkC4oA2a8rW4l+k5yIOW+2GHuy68eGwA0p6jpG8Wx+V5eJpY5C7vcAv8Hde" crossorigin="anonymous">
+    <style>
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 22px;
+        }
+
+        nav ul li a:hover {
+            color: #0787ff; /* Change color on hover */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+                /* Chat box styles */
+       .chat-container {
+            position: relative;
+            margin-top: 20px; /* Adjust spacing */
+        }
+        .chat-input {
+        width: 250px;
+        height: 200px;
+        background-color: hsl(203, 69%, 75%);
+        border: none;
+        border-radius: 40px;
+        padding: 15px;
+        color: #070707;
+        font-size: 30px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        outline: none;
+        box-sizing: border-box;
+        overflow: auto;
+        position: absolute;
+        bottom: -200px; /* Adjust vertical position */
+        left: 0; /* Position on the left side */
+        border-top-right-radius: 40; /* Reset border radius for the chat bubble effect */
+        border-bottom-right-radius: 40; /* Reset border radius for the chat bubble effect */
+        border-top-left-radius: 40px; /* Chat bubble effect */
+        border-bottom-left-radius: 0; /* Chat bubble effect */
+        border-right: 0; /* Hide right border for chat bubble effect */
+        }
+        .chat-input:focus {
+        border-top-right-radius: 0; /* Reset border radius for the chat bubble effect */
+        border-bottom-right-radius: 0; /* Reset border radius for the chat bubble effect */
+        border-right: 0; /* Hide right border for chat bubble effect */
+        }
+        .chat-description {
+        position: absolute;
+        bottom: -300px; /* Adjust vertical position */
+        left: 0;
+        font-size: 25px;
+        color: #0e0e0e; /* Adjust color as needed */
+        }
+        .chat-image {
+    position: absolute;
+    bottom: -550px; /* Adjust vertical position */
+    left: 10%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    width: 240px; /* Adjust width of the chat bubble shape */
+    height: 200px; /* Adjust height of the chat bubble shape */
+    border-radius: 20%; /* Make it round */
+    border-top-right-radius: 40px; /* Reset border radius for the chat bubble effect */
+    border-bottom-right-radius: 40px; /* Reset border radius for the chat bubble effect */
+        border-top-left-radius: 40px; /* Chat bubble effect */
+        border-bottom-left-radius: 0; /* Chat bubble effect */
+        border-right: 0;
+        }
+
+
+      
+
+  body1 {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-content: center;
+    grid-auto-flow: column;
+    gap: 30px;
+    background: rgb(128, 187, 226);
+  }
+  body{
+  margin:0;
+  padding:0;
+  background:rgb(233, 236, 238);
+  font-family:cursive;
+}
+.card{
+  width:350px;
+  height:450px;
+  position:absolute;
+  top:50%;
+  left:70%;
+  transform:translate(-50%,-50%)perspective(2000px);
+  background:#fff;
+  transform-style:preserve-3d;
+  box-shadow:inset 300px 0 50px rgba(0,0,0,.5),0 20px 100px rgba(0,0,0,.5);
+  transition:1s;
+}
+.card:hover{
+  transform:translate(-50%,-50%) perspective(2000px) rotate(-10deg);  
+   box-shadow:inset 20px 0 50px rgba(0,0,0,.5),0 10px 100px rgba(0,0,0,.5);
+}
+.card:before{
+  content:'';
+  position:absolute;
+  top:-5px;
+  left:0;
+  width:100%;
+  height:5px;
+  background:#2196F3;
+  transform-origin:bottom;
+  transform:skewX(-45deg)
+}
+.card:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:-5px;
+  width:5px;
+  height:100%;
+  background:#2196F3;
+  transform-origin:left;
+  transform:skewY(-45deg);
+}
+.card .imgBox img{
+  height:100%;
+  width:100%;
+}
+
+.card .imgBox{
+  width:100%;
+  height:100%;
+  position:relative;
+  transform-origin:left;
+  transition:1s cubic-bezier(.15,1.7,.84,.58);
+}
+.card:hover .imgBox{
+  transform:rotateY(-125deg)
+}
+.card .details{
+  position:absolute;
+  top:0;left:0;
+  box-sizing:boreder-box;
+  padding:20px;
+    z-index:-1;
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="\home">Home</a></li>
+            
+            <li><a href="https://www.depression-understood.org/mainchat/mainchat1.htm" target="_blank">Join</a></li>
+            
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Welcome to Community Chat</h1>
+       
+        <div class="chat-container">
+            
+            <textarea class="chat-input" readonly placeholder="When life &#10;doesn't go &#10; as planned"></textarea>
+            
+            
+           
+            <p class="chat-description">A safe place to chat anonymously,<br> get support, and feel better.</p>
+            <img src="static/css/aa.jpg" alt="Image" class="chat-image">
+        </div>
+        <div class="card">
+            <div class="imgBox">
+              <img src="static/css/cg.jpg" alt="">
+            </div>
+            <div class="details">
+              <h2>Community Chat</h2>
+              <p>Strong communities are critical because they’re often an important source of social connection and a sense of belonging. Participating in a community bonded by attitudes, values, and goals is an essential ingredient to enjoying a fulfilling life.<br>Ultimately, communities give people a supportive group to help them cope with difficult challenges, band together to solve problems, and celebrate life’s lighter moments. </p>
+            </div>
+          </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" integrity="sha384-rIYEn09C8JAP9GP9z6L+5c8+sFuR6kwqgk0JE3dK6S7G9d5Hzro6kY9itgrL3JRM" crossorigin="anonymous"></script>
+</body>
+</html>

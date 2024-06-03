@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Comment Section | Firebase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #fff;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #e53935;
+            margin: 10px 0;
+        }
+
+        .header .powered-by {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-top: 5px;
+        }
+
+        .comments-container {
+            max-height: 1000px;
+            min-height: 1000px;
+            max-width: 140%;
+
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #1e1e1e;
+        }
+
+        .comment-container {
+            margin-bottom: 20px;
+            width: 90%;
+            margin-left: 0;
+            
+            position: relative;
+        }
+
+        .comment {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #333;
+            border-radius: 15px;
+            background-color: #2c2c2c;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .comment strong {
+            font-weight: bold;
+            color: #e53935;
+        }
+
+        .comment-name {
+            width: 150px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            padding: 8px;
+            border: 1px solid #e53935;
+            border-radius: 5px;
+            background-color: #1e1e1e;
+            color: #fff;
+        }
+
+        .comment-content {
+    width: calc(90% - 30px); /* Subtract padding from width */
+    height: 40px; /* Set fixed height */
+    overflow-y: hidden; /* Hide scrollbar */
+    margin-bottom: 10px;
+    border: 1px solid #333;
+    border-radius: 20px;
+    padding: 15px;
+    background-color: #2c2c2c;
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+
+        .comment-content:focus {
+            border-color: #e53935;
+            outline: none;
+            box-shadow: 0 0 10px rgba(229, 57, 53, 0.5);
+        }
+
+        .submit-button {
+            padding: 10px 20px;
+            background-color: #e53935;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #c62828;
+        }
+
+        .toxic-comment {
+            filter: blur(5px);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .see-why-button {
+            background-color: #e53935;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 12px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin-top: 6%;
+            margin-left: 20px;
+            transform: translate(100%, -100%);
+        }
+
+        .comment-container {
+            position: relative;
+        }
+
+        .replying-to {
+            font-style: italic;
+            color: #e53935;
+            margin-bottom: 10px;
+        }
+
+        .reply-label {
+            display: block;
+            font-style: italic;
+            color: #aaa;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Talk with Stranger</h1>
+            <div class="powered-by">Powered by ToxiTrack AI</div>
+        </div>
+        <form id="commentForm" class="comment-form">
+            <div id="replyingToContainer"></div>
+            <input type="text" id="commentAs" class="comment-name" placeholder="Your Name">
+            <textarea id="commentContent" class="comment-content" placeholder="Write your comment..."></textarea>
+            <button id="sub" type="submit" class="submit-button">POST</button>
+        </form>
+        <div class="comments-container" id="commentsContainer"></div>
+        <input type="hidden" id="overallToxicity" name="overallToxicity" value="">
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script>
+        // Firebase configuration
+      
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Reference your database
+        var commentsDB = firebase.database().ref("comments");
+
+        let storedUsername = null;
+        let replyToComment = null;
+
+        document.getElementById("commentForm").addEventListener("submit", submitComment);
+
+        // Function to load comments from Firebase and display them on the website
+        commentsDB.on("child_added", function(snapshot) {
+            var commentData = snapshot.val();
+            displayComment(commentData.name, commentData.comment, commentData.overallToxicity, commentData.replyTo, commentData.timestamp);
+        });
+
+        function submitComment(e) {
+            e.preventDefault();
+
+            if (!storedUsername) {
+                storedUsername = getElementVal("commentAs");
+            }
+            
+            var commentContent = getElementVal("commentContent");
+
+            $.ajax({
+                url: '/post1',
+                type: 'GET',
+                data: { 'jtext': commentContent },
+                success: function(data) {
+                    var isToxic = data.overall_toxicity;
+                    var currentTime = new Date();
+                    var ISTOffset = 5.5 * 60 * 60 * 1000; // IST offset in milliseconds
+                    var ISTTime = new Date(currentTime.getTime() + ISTOffset);
+                    var timestamp = ISTTime.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+
+                    saveComment(storedUsername, commentContent, isToxic, replyToComment, timestamp);
+
+                    document.getElementById("commentContent").value = "";
+                    replyToComment = null;
+                    document.getElementById("replyingToContainer").innerHTML = "";
+                },
+            });
+        }
+
+        const saveComment = (commentAs, commentContent, overallToxicity, replyTo, timestamp) => {
+            var newCommentRef = commentsDB.push();
+           
+            newCommentRef.set({
+                name: commentAs,
+                comment: commentContent,
+                overallToxicity: overallToxicity,
+                replyTo: replyTo,
+                timestamp: timestamp
+            });
+        };
+
+        // Function to get element value by ID
+        const getElementVal = (id) => {
+            return document.getElementById(id).value;
+        };
+
+        function displayComment(name, comment, overallToxicity, replyTo, timestamp) {
+            if (!timestamp) {
+                timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+            }
+
+            var commentsContainer = document.getElementById("commentsContainer");
+
+            var commentContainer = document.createElement("div");
+            commentContainer.classList.add("comment-container");
+
+            var commentElement = document.createElement("div");
+            commentElement.classList.add("comment");
+            commentElement.style.animation = "fadeIn 0.3s ease";
+
+            var nameElement = document.createElement("strong");
+            nameElement.textContent = name + ": ";
+
+            var timestampElement = document.createElement("span");
+            timestampElement.textContent = ` (${timestamp})`;
+
+            var commentContentElement = document.createElement("span");
+            commentContentElement.textContent = comment;
+
+            commentElement.appendChild(nameElement);
+            commentElement.appendChild(timestampElement);
+            commentElement.appendChild(commentContentElement);
+
+            if (replyTo) {
+                var replyLabel = document.createElement("span");
+                replyLabel.classList.add("reply-label");
+                replyLabel.textContent = "Replying to: " + replyTo;
+                commentElement.appendChild(replyLabel);
+            }
+
+            commentContainer.appendChild(commentElement);
+            commentsContainer.appendChild(commentContainer);
+
+            if (overallToxicity === true || overallToxicity === "true") {
+                commentElement.classList.add("toxic-comment");
+
+                var seeWhyButton = document.createElement("button");
+                seeWhyButton.textContent = "See Why";
+                seeWhyButton.classList.add("see-why-button");
+                seeWhyButton.onclick = function() {
+                    var confirmed = confirm("This message contains harsh comments. Do you want to proceed?");
+                    if (confirmed) {
+                        commentElement.classList.remove("toxic-comment");
+                    }
+                };
+
+                commentContainer.appendChild(seeWhyButton);
+            }
+
+            commentElement.addEventListener("dblclick", function() {
+                replyToComment = comment;
+                var replyingToContainer = document.getElementById("replyingToContainer");
+                replyingToContainer.innerHTML = `<div class="replying-to">Replying to: ${comment}</div>`;
+                document.getElementById("commentContent").focus();
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+html {
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: lightcyan;
+  margin: 0; /* Remove default margin */
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.color-white {
+  color: #fff;
+}
+
+.box-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 35px 15px;
+  width: 100%;
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+@media screen and (min-width: 1380px) {
+  .box-container {
+      flex-direction: row;
+  }
+}
+
+.box-item {
+  position: relative;
+  width: 100%; /* Adjust width to fill container */
+  margin-bottom: 35px;
+  max-width: 415px; /* Limit maximum width */
+}
+
+.flip-box {
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+.flip-box-front,
+.flip-box-back {
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  min-height: 475px;
+  transition: transform 0.7s cubic-bezier(.4, .2, .2, 1);
+  backface-visibility: hidden;
+}
+
+.flip-box-front {
+  transform: rotateY(0deg);
+}
+
+.flip-box:hover .flip-box-front {
+  transform: rotateY(-180deg);
+}
+
+.flip-box-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transform: rotateY(180deg);
+}
+
+.flip-box:hover .flip-box-back {
+  transform: rotateY(0deg);
+}
+
+.flip-box .inner {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  padding: 60px;
+  outline: 1px solid transparent;
+  perspective: inherit;
+  z-index: 2;
+  transform: translateY(-50%) translateZ(60px) scale(.94);
+  top: 50%;
+}
+
+.flip-box-header {
+  font-size: 34px;
+}
+
+.flip-box p {
+  font-size: 20px;
+  line-height: 1.5em;
+  color: black;
+}
+
+.flip-box-img {
+  margin-top: 25px;
+}
+
+.fixed-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #16aced;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.fixed-button:hover {
+  background-color: #616461;
+}
+
+.heading {
+  font-size: 36px;
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
