@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracker</title>
+    <link rel="stylesheet" href="static/css/tracker.css">
+    <style>
+        /* Your CSS styles here */
+		/* styles.css */
+
+/* Reset body styles */
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('static/css/bg.jpg'); /* Use a relative path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background:lightblue;
+}
+
+/* Adjust size and position of text */
+.wrapper {
+    display: inline-flex;
+    align-items: center; /* Align content vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+/* Adjust size of heading */
+.wrapper .static-txt {
+    color: #0c0c0c;
+    font-size: 60px; /* Adjusted font size */
+    font-weight: 600;
+    margin-right: 20px; /* Add margin to separate from dynamic text */
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Adjust size and position of dynamic text */
+.dynamic-txts {
+    display: flex; /* Use flexbox for dynamic text */
+    align-items: center; /* Align content vertically */
+}
+
+.dynamic-txts li {
+    color: #0a0a0a;
+    list-style: none;
+    font-size: 40px; /* Adjusted font size */
+    font-weight: 550;
+    position: relative;
+    top: 0;
+}
+
+/* Add animation to span after */
+.dynamic-txts li span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #fbf9f9;
+    border-left: 2px solid #0b0b0b;
+    animation: typing 4s steps(10) infinite;
+}
+
+/* Animation keyframes */
+@keyframes typing {
+    100% {
+        left: 100%;
+        margin: 0 -10px 0 10px;
+    }
+}
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.wrapper {
+    text-align: center;
+    padding: 20px;
+}
+
+.dynamic-txts {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.dynamic-txts li {
+    margin: 0 10px;
+}
+
+.box-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.box-item {
+    flex: 0 0 calc(33.33% - 20px);
+    max-width: calc(33.33% - 20px);
+    margin-bottom: 20px;
+    /* Other styles for box items */
+}
+
+.calendar-container {
+    text-align: center;
+}*/
+
+.fixed-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #16aced;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+
+/* Calendar styles */
+/*.calendar-container {
+    background-color: white;
+   
+
+    
+}*/
+
+.box-item {
+    margin-bottom: 20px;
+    /* Other styles for box items */
+}
+
+/*.calendar-container {
+    margin-top: 10px; /* Add space between cards and calendar 
+}*/
+
+.container {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto; /* Adjust the rows as needed */
+    min-height: 100vh;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.box-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap; /* Allow cards to wrap if necessary */
+    margin: 20px 0; /* Adjust margin as needed */
+}
+
+.box-item {
+    width: 30%; /* Adjust width as needed */
+    margin-bottom: 20px;
+    /* Other styles for box items */
+}
+
+
+/* Calendar container styles */
+.calendar-container {
+    max-width: 1475px; /* Adjust the maximum width of the calendar container */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #67cff8;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Add spacing below the calendar */
+}
+
+.calendar-container h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Calendar table styles */
+.calendar {
+    width: 50%; /* Use full width of the calendar container */
+    border-collapse: collapse;
+}
+
+.calendar th,
+.calendar td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Add activity container styles */
+.add-activity-container {
+    max-width: 600px; /* Adjust the maximum width of the add activity container */
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Add activity form styles */
+.add-activity-form {
+    display: flex;
+    align-items: center;
+}
+
+.add-activity-form input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+    box-sizing: border-box;
+}
+
+.add-activity-form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-activity-form button:hover {
+    background-color: #0056b3;
+}
+
+
+
+    </style>
+</head>
+<body>
+	<div class="container">
+		<div class="wrapper">
+			<div class="static-txt">Track Your Activity</div>
+			<ul class="dynamic-txts">
+				<li><span>Improve</span></li>
+				<li><span>Your</span></li>
+				<li><span>Mental</span></li>
+				<li><span>Health</span></li>
+			</ul>
+		</div>
+
+<div class="box-container">
+    <!-- Card 1 -->
+    <div class="box-item">
+        <div class="flip-box">
+            <div class="flip-box-front text-center" style="background-image: url('static/css/e.jpeg');">
+                <div class="inner color-white">
+                    <h3 class="flip-box-header">Visualize your entire month at a glance.</h3>
+                    <img src="https://s25.postimg.cc/65hsttv9b/cta-arrow.png" alt="" class="flip-box-img">
+                </div>
+            </div>
+            <div class="flip-box-back text-center" style="background-image: url('static/css/a.jpg');">
+                <div class="inner color-white">
+                    <h3 class="flip-box-header"></h3>
+                    <p>With a simple calendar view, you can see your activity for the entire month to see how you're doing and which areas you might need to focus on.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="box-item">
+        <div class="flip-box">
+            <div class="flip-box-front text-center" style="background-image: url('static/css/jog.webp');">
+                <div class="inner color-white">
+                    <h3 class="flip-box-header">Set flexible goals</h3>
+                    <img src="https://s25.postimg.cc/65hsttv9b/cta-arrow.png" alt="" class="flip-box-img">
+                </div>
+            </div>
+            <div class="flip-box-back text-center" style="background-image: url('static/css/wor.png');">
+                <div class="inner color-white">
+                    <h3 class="flip-box-header"></h3>
+                    <p>Goals are based on flexible consistency, which makes it easy to follow. It's important that you continue doing your habit.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="box-item">
+        <div class="flip-box">
+            <div class="flip-box-front text-center filter-" style="background-image: url('static/css/re.jpg');">
+                <div class="inner color-white">
+                    <h3 class="flip-box-header">Add Customized activities</h3>
+                    <img src="https://s25.postimg.cc/65hsttv9b/cta-arrow.png" alt="" class="flip-box-img">
+                </div>
+            </div>
+            <div class="flip-box-back text-center" style="background-image: url('static/css/rr.jpg');">
+                <div class="inner color-white">
+                    <h3 class="flip-box-header"></h3>
+                    <p>You can add activities based on your interest.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calendar -->
+    <div class="calendar-container">
+        <h1>Activity Calendar</h1>
+        <table class="calendar">
+            <!-- Calendar will be generated here -->
+        </table>
+    </div>
+    <div class="add-activity-form">
+        <input type="text" id="newActivityInput" placeholder="Enter new activity name">
+        
+        <button onclick="addNewActivity()">Add Activity</button>
+    
+
+</div>
+
+    <!-- Fixed button -->
+    <a href="\home" class="fixed-button">HOME</a>
+
+<script>
+	function addNewActivity() {
+    var newActivityInput = document.getElementById("newActivityInput");
+    var newActivityName = newActivityInput.value.trim();
+
+    if (newActivityName !== "") {
+        // Add the new activity to the activity calendar
+        var calendar = document.querySelector(".calendar");
+        var newRow = document.createElement("tr");
+
+        // Create cell for activity name
+        var activityCell = document.createElement("td");
+        activityCell.textContent = newActivityName;
+        newRow.appendChild(activityCell);
+
+        // Create cells for each day of the month with checkboxes
+        for (var i = 0; i < 31; i++) {
+            var checkboxCell = document.createElement("td");
+            var checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.className = "checkbox";
+
+            // Add event listener for checkbox click
+            checkbox.addEventListener("click", function() {
+                var activityCount = 0;
+                var checkboxes = this.parentNode.parentNode.querySelectorAll(".checkbox");
+                checkboxes.forEach(function(checkbox) {
+                    if (checkbox.checked) {
+                        activityCount++;
+                    }
+                });
+
+                var achievedInput = this.parentNode.parentNode.querySelector(".achieved input");
+                achievedInput.value = activityCount;
+
+                var goalInput = this.parentNode.parentNode.querySelector(".goal input");
+                var goal = parseInt(goalInput.value);
+
+                if (activityCount >= goal) {
+                    this.parentNode.parentNode.style.backgroundColor = "lightgreen"; // Change row color to light green
+                } else {
+                    this.parentNode.parentNode.style.backgroundColor = ""; // Reset row color
+                }
+            });
+
+            checkboxCell.appendChild(checkbox);
+            newRow.appendChild(checkboxCell);
+        }
+
+        // Create cells for goal and achieved (add classes "goal" and "achieved" to goal and achieved cells)
+        var goalCell = document.createElement("td");
+        var goalInput = document.createElement("input");
+        goalInput.type = "text";
+        goalInput.value = "20"; // Set the goal to 20
+        goalCell.appendChild(goalInput);
+        goalCell.classList.add("goal"); // Add class "goal"
+        newRow.appendChild(goalCell);
+
+        var achievedCell = document.createElement("td");
+        achievedCell.classList.add("achieved"); // Add class "achieved"
+        var achievedInput = document.createElement("input");
+        achievedInput.type = "text";
+        achievedInput.value = "0"; // Set initial achieved value to 0
+        achievedCell.appendChild(achievedInput);
+        newRow.appendChild(achievedCell);
+
+        calendar.appendChild(newRow);
+        newActivityInput.value = ""; // Clear the input field
+
+        // Update the style of the new row based on goal achievement
+        updateRowStyle(newRow);
+    }
+}
+
+
+
+       function createCalendar() {
+  var calendar = document.querySelector(".calendar");
+
+  // Create header row for days of the month
+  var activities = ["Meditation", "Walk", "Socialise", "Read a book", "Yoga", "Exercise"];
+
+  var headerRow = document.createElement("tr");
+  var activityHeader = document.createElement("th");
+  activityHeader.textContent = "Activities ";
+  headerRow.appendChild(activityHeader);
+
+  for (var i = 1; i <= 31; i++) {
+    var cell = document.createElement("th");
+    cell.textContent = i;
+    headerRow.appendChild(cell);
+  }
+
+  // Add "Goal" and "Achieved" columns
+  var goalHeader = document.createElement("th");
+  goalHeader.textContent = "Goal";
+  headerRow.appendChild(goalHeader);
+
+  var achievedHeader = document.createElement("th");
+  achievedHeader.textContent = "Achieved";
+  headerRow.appendChild(achievedHeader);
+
+  calendar.appendChild(headerRow);
+
+  // Create rows for checkboxes
+  for (var i = 0; i < Math.min(activities.length, 11); i++) { // Limit activities to 11 rows
+    var dateRow = document.createElement("tr");
+
+    // Create cell for activity with initial count 0
+    var activityCell = document.createElement("td");
+    activityCell.textContent = activities[i] ;
+    dateRow.appendChild(activityCell);
+
+    for (var j = 0; j < 31; j++) {
+      var checkboxCell = document.createElement("td");
+      var checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.className = "checkbox";
+
+      // Add event listener for checkbox click
+      checkbox.addEventListener("click", function() {
+        var activityCount = 0;
+        var checkboxes = this.parentNode.parentNode.querySelectorAll(".checkbox");
+        checkboxes.forEach(function(checkbox) {
+          if (checkbox.checked) {
+            activityCount++;
+          }
+        });
+
+        var activityName = this.parentNode.parentNode.firstChild.textContent.split(' ')[0];
+        var activityCell = this.parentNode.parentNode.firstChild;
+
+       /* activityCell.textContent = activityName + " (" + activityCount + ")";*/
+
+        var achievedInput = this.parentNode.parentNode.querySelector(".achieved input");
+        achievedInput.value = activityCount;
+
+        var goalInput = this.parentNode.parentNode.querySelector(".goal input");
+        var goal = parseInt(goalInput.value);
+
+        if (activityCount >= goal) {
+          this.parentNode.parentNode.style.backgroundColor = "lightgreen"; // Change row color to light green
+        } else {
+          this.parentNode.parentNode.style.backgroundColor = ""; // Reset row color
+        }
+      });
+      checkboxCell.appendChild(checkbox);
+      dateRow.appendChild(checkboxCell);
+    }
+
+    // Create cells for goal and achieved (add classes "goal" and "achieved" to goal and achieved cells)
+    var goalCell = document.createElement("td");
+    var goalInput = document.createElement("input");
+    goalInput.type = "text";
+    goalInput.value = "20"; // Set the goal to 20
+    goalCell.appendChild(goalInput);
+    goalCell.classList.add("goal"); // Add class "goal"
+    dateRow.appendChild(goalCell);
+
+    var achievedCell = document.createElement("td");
+    achievedCell.classList.add("achieved"); // Add class "achieved"
+    var achievedInput = document.createElement("input");
+    achievedInput.type = "text";
+    achievedInput.value = "0"; // Set initial achieved value to 0
+    achievedCell.appendChild(achievedInput);
+    dateRow.appendChild(achievedCell);
+
+    calendar.appendChild(dateRow);
+  }
+}
+
+// Call the function to create the calendar
+createCalendar();
+
+
+</script>
+
+</body>
+</html>

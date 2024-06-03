@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <link rel="stylesheet" href="static/css/result.css"> <!-- Link to your CSS file -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js"></script>
+</head>
+<style>
+    body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: lightblue;
+        min-height: 100vh; /* Ensure the content fills at least the viewport height */
+        overflow-y: auto; /* Allow vertical scrolling */
+    }
+    .heading {
+        font-size: 36px; /* Adjust the font size */
+        color: #333; /* Change the text color */
+        font-weight: bold; /* Make the text bold */
+        text-align: center; /* Center align the text */
+        margin-bottom: 5px; /* Add some space below the heading */
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    .textbox p {
+        padding: 18px;
+        border-radius: 30px; /* Use half of the height for oval shape */
+        background-color: blue;
+        color: #fff;
+        position: absolute;
+        bottom: 220px; /* Adjust the positioning as needed */
+        left: 50%;
+        transform: translateX(-50%); /* Center horizontally */
+        white-space: nowrap; /* Prevent line breaks */
+        font-size: 20px;
+    }
+
+    .textbox p:nth-child(2) {
+        bottom: 300px; /* Adjust position for the second paragraph */
+        background-color: blueviolet;
+    }
+
+    .textbox p:nth-child(3) {
+        bottom: 140px; /* Adjust position for the third paragraph */
+        background-color: cyan;
+    }
+    .suggestion h3 {
+        padding: 10px;
+        border-radius: 20px; /* Use half of the height for oval shape */
+        background-color: #007bff;
+        color: #fff;
+        position: absolute;
+        top: -20px; /* Adjust the positioning as needed */
+        left: 50%;
+        transform: translateX(-50%); /* Center horizontally */
+        white-space: nowrap; /* Prevent line breaks */
+        margin-bottom: 40px; /* Add margin below the suggestion */
+    }
+    .suggestion p {
+        color: black;
+        margin-top: 50px;
+    }   
+</style>
+<body>
+    <h1 class="heading">View Your Result</h1>  
+
+    <div class="container">
+        <article class="card">
+            <img class="card__background" src="static/css/aaa.jpg" width="1920" height="2193" />
+            <div class="card__content flow">
+                <div class="card__content--container flow">
+                    <h2 class="card__title">Just Relax</h2>
+                    <p class="card__description">
+                        “It’s okay to not be okay sometimes....You are not broken, you are just healing.....”
+                    </p>
+                </div>
+                
+                <button class="card__button" onclick="window.location.href = '\qoutes';">Read more</button>
+            </div>
+        </article>
+        <div class="textbox">
+            <h3>Your Result :</h3>
+            <p id="depression-level">Depression level: {{depression_prediction}} </p>
+            <p id="stress-level">Anxiety level: {{anxiety_prediction}}</p>
+            <p id="anxiety-level">Stress level: {{stress_prediction}}</p>
+        </div>
+        <div class="gallery">
+            <img src="static/css/abab.webp">
+            <img src="static/css/de.jpg">
+            <img src="static/css/Pranayama-Benefits.webp">
+            <img src="static/css/rrr.webp">
+        </div>
+        <div class="suggestion">
+            <h3>Recommended activities</h3>
+            <p>Meditation<br>Walk<br>Socialise<br>Read book<br>Yoga<br>Exercise</p>
+        </div>
+        <a href="\home" class="btn">HOME</a>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "key",
+            authDomain: "key",
+            databaseURL: "url",
+            projectId: "id",
+            storageBucket: "name",
+            messagingSenderId: "id",
+            appId: "id"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const auth = getAuth(app);
+
+        // Function to save results to Firebase Realtime Database
+        function saveResultsToDatabase(userId, depressionLevel, stressLevel, anxietyLevel) {
+            set(ref(db, 'users/' + userId + '/results'), {
+                depression: depressionLevel,
+                stress: stressLevel,
+                anxiety: anxietyLevel,
+                timestamp: new Date().toISOString()
+            })
+            .then(() => {
+                console.log('Results saved successfully.');
+            })
+            .catch((error) => {
+                console.error('Error writing new result to Firebase Database', error);
+            });
+        }
+
+        // Wait for the DOM to fully load
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Retrieve the results from the HTML
+            const depressionLevel = document.getElementById('depression-level').innerText.split(': ')[1];
+            const stressLevel = document.getElementById('stress-level').innerText.split(': ')[1];
+            const anxietyLevel = document.getElementById('anxiety-level').innerText.split(': ')[1];
+
+            // Retrieve user credentials from sessionStorage
+            const userCreds = JSON.parse(sessionStorage.getItem('user-creds'));
+            if (userCreds && userCreds.uid) {
+                // Save the results to Firebase
+                saveResultsToDatabase(userCreds.uid, depressionLevel, stressLevel, anxietyLevel);
+            } else {
+                console.error('User not logged in or credentials not found in sessionStorage');
+            }
+        });
+    </script>
+</body>
+</html>
+

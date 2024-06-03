@@ -1,0 +1,389 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.main{
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(f.jpg);
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.navbar{
+    width: 100%;
+    max-width: 1200px;
+    height: 75px;
+    margin: auto;
+}
+
+.icon{
+    width: 200px;
+    float: left;
+    height: 70px;
+}
+
+.logo{
+    color: #09ecc3;
+    font-size: 35px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding-left: 20px;
+    float: left;
+    padding-top: 10px;
+    margin-top: 5px
+}
+
+.menu{
+    width: 400px;
+    float: left;
+    height: 70px;
+}
+
+ul{
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul li{
+    list-style: none;
+    margin-left: 62px;
+    margin-top: 27px;
+    font-size: 18px;
+}
+
+ul li a{
+    text-decoration: none;
+    color: #fff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+}
+
+ul li a:hover{
+    color: #09ecc3;
+}
+
+
+
+
+.content{
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    margin: auto;
+    color: #fff;
+    position: relative;
+    overflow-y: auto;
+}
+
+.content .par{
+    padding-left: 20px;
+    padding-bottom: 25px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 1.2px;
+    line-height: 30px;
+}
+
+.content h1{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 50px;
+    padding-left: 20px;
+    margin-top: 9%;
+    letter-spacing: 2px;
+}
+
+.content .cn{
+    width: 160px;
+    height: 40px;
+    background: #09ecc3;
+    border: none;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .4s ease;
+    
+}
+
+.content .cn a{
+    text-decoration: none;
+    color: #000;
+    transition: .3s ease;
+}
+
+.cn:hover{
+    background-color: #fff;
+}
+
+.content span{
+    color: #09ecc3;
+    font-size: 65px
+}
+/*
+
+.form {
+    width: 250px;
+    height: auto; /* Change to auto to adjust height based on content 
+    background: linear-gradient(to top, rgba(0,0,0,0.8)50%,rgba(0,0,0,0.8)50%);
+    position: absolute;
+    top: 50%; /* Position it at the vertical center 
+    right: 5%; /* Position it at the horizontal center 
+    transform: translate(0%, -50%); /* Adjust centering 
+    border-radius: 10px;
+    padding: 25px;
+    overflow: hidden; /* Prevent scrolling 
+}
+
+.form h2{
+    width: 220px;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    color: #09ecc3;
+    font-size: 22px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 2px;
+    padding: 8px;
+}
+
+.form input{
+    width: 240px;
+    height: 35px;
+    background: transparent;
+    border-bottom: 1px solid #09ecc3;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.form input:focus{
+    outline: none;
+}
+
+::placeholder{
+    color: #fff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.btnn{
+    width: 220px;
+    height: 40px;
+    background: #09ecc3;
+    border: none;
+    margin-top: 30px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.4s ease;
+    
+}
+.btnn:hover{
+    background: #fff;
+    color: #09ecc3;
+}
+.btnn a{
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+.form .link{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 17px;
+    padding-top: 20px;
+    text-align: center;
+}
+.form .link a{
+    text-decoration: none;
+    color: #09ecc3;
+}
+*/
+
+.text-box {
+    position: relative; /* Change to static */
+    width: 97.1%; /* Adjust the width as needed */
+    margin: 0 0%; /* Center the text box horizontally and provide space from the main content */
+    background: black;
+    color:gray;
+    padding: 20px;
+    text-align: left;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Add a shadow effect */
+    overflow:hidden;
+}
+
+
+.text {
+    margin: 0; /* Remove default margin */
+    font-size: 46px;
+    font-family: 'Courier New', Courier, monospace; /* Adjust font size as needed */
+    line-height: 1;
+    color: #131313;  /* Adjust line height for readability */
+    transition: filter 0.3ms ease;
+}
+.text.brighter{
+    filter:brightness(1.5);
+}
+.know-yourself {
+    font-size: 30px;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color:#fafafa
+    /* Add any other styles for the "KNOW YOURSELF" text */
+}
+.btn {
+    background-color: #fafafa;
+    color: rgb(17, 17, 17);
+    padding: 10px 30px; /* Adjust padding to increase width */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    vertical-align: middle;
+    width: auto; /* Set width to auto to adjust based on content */
+    text-decoration: none;
+}
+
+
+
+.btn:hover {
+    background-color: #a9a6a4;
+}
+
+
+.spotlight {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle at center, rgba(248, 246, 246, 0.5) 0%, rgba(248, 246, 246, 0.3) 70%, rgba(248, 246, 246, 0) 100%); /* Use radial gradient for faded edge effect */
+    color: white;
+    padding: 10px 20px;
+    width: 150px; /* Set the width and height to be the same */
+    height: 150px; /* Set the width and height to be the same */
+    border-radius: 50%; /* Make the spotlight round */
+    box-shadow: 0 0 10px rgba(26, 26, 26, 0.2);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+    filter: blur(5px) brightness(1.2);
+}
+.spotlight.active {
+    opacity: 1;
+}
+
+.spotlight-text {
+    margin: 0;
+    font-size: 16px;
+    
+}
+.goals-section .small-text {
+    margin-bottom: 1em; /* Adjust as needed for spacing */
+}
+
+.goals-section .btn {
+    margin-top: 1em; /* Adjust as needed for spacing */
+}
+.goals-section .btn {
+    
+    background-color: rgb(0, 187, 255); /* Change the button color to blue */
+    color: rgb(243, 236, 236); /* Ensure text color contrasts well with the background */
+    text-decoration: none;
+}
+.goals-section .btn:hover {
+    color: rgb(26, 25, 25); /* Change the text color to white on hover */
+}
+.goals-section .btn:hover {
+    background-color: #918f8f; /* Change the background color to white on hover */
+}
+.goals-section {
+    margin-left: 220px; /* Adjust as needed */
+}
+.gif-container {
+ 
+    margin-top: -250px; /* Adjust the vertical margin as needed */
+    
+    float: right;
+    margin-left: 50px; /* Adjust the margin as needed */
+}
+
+.goal-gif {
+    width: 400px; /* Adjust the width of the GIF as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+.scroll-animation {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateY(-10%); /* Start from slightly above */
+    }
+    100% {
+        transform: translateY(0%); /* Shift down */
+    }
+}
+
+.goals-section {
+    transform: translateY(-10%); /* Initial position */
+    transition: transform 0.5s ease; /* Smooth transition */
+}
+
+.goals-section:hover {
+    transform: translateY(0%); /* Final position on hover */
+}
+.black-box {
+    background-color: rgb(32, 31, 31);
+    color: white;
+    padding: 20px;
+    margin-top: 20px; /* Adjust as needed */
+    text-align: center;
+    height: 150px;
+    position: relative; 
+}
+.black-box p {
+    font-size: 20px; /* Adjust the font size as needed */
+    margin: 0; /* Remove default margin */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.cn {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.btnn {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.large-text, .small-text, .btn {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.par {
+    font-size: 18px; /* Adjust the size as needed */
+}
+.btnn {
+    display: inline-block;
+    padding: 8px 14px; 
+    background-color: #00ffe1;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    color: rgb(24, 24, 24);
+    line-height: 1;
+    display: flex; /* Added */
+    justify-content: center; /* Added */
+    align-items: center;
+}
+
+
+
