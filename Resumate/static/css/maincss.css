@@ -1,0 +1,248 @@
+body{
+	margin: 0px; 
+	padding: 0px; 
+}
+
+.mainz{
+    width: 100%;  
+    min-height: 100vh;
+    margin: 0px; 
+	padding: 0px; 
+    background: #9053c7;
+    display: flex;
+    flex-wrap: wrap;
+    position: fixed;
+}
+
+.top-bar{
+    width: 100%;
+    background: linear-gradient(-135deg,#1f3fe1, #090457);
+    height: 70px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+.top-bar p{
+    padding-left: 50px;
+    margin: 0;
+    color: white;
+    font-size: 2.5rem;
+    font-family: "Briem Hand", cursive;
+    font-weight: 600;
+}
+
+.top-bar button{
+    margin-right: 4rem;
+    height: 2.5rem;
+    width: 9rem;
+    border-radius: 1.25rem;
+    border: none;
+    background-color: #f26430;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.top-bar button:hover
+{
+    background-color: #b33203;
+    transition: all;
+    transition-duration: 0.25s;
+}
+
+.top-bar button i{
+    margin-right: 1.25rem;
+    margin-left: 0.75rem;
+    font-size: 1rem;
+}
+
+.logo-output{
+    width: 35%;
+    background-color: #009B72;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-space{
+    width: 70%;
+    height: 350px;
+    background-color: #AEFFD8;
+    margin-top: 1.5rem;
+    border-radius: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.output-space{
+    margin-top: 1.5rem;
+    border-radius: 2rem;
+    width: 70%;
+    height: 250px;
+    background-color: #AEFFD8;
+}
+
+.op-title{
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 700;
+    text-decoration: underline;
+    font-size: 30px;
+    margin-left: 4.75rem;
+}
+
+.interactive-content{
+    flex-grow: 1;
+    height: 100vh;
+    background-color: #009B72;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.text-1{
+    width: 100%;
+    height: 100px;
+    background-color: #009B72;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-1 p{
+    font-family: "Briem Hand", cursive;
+    font-weight: 650;
+    color: white;
+    font-size: 2.5rem;
+    align-self: center;
+}
+
+.container-1{
+    width: 90%;
+    height: 70%;
+    margin-left: 3rem;
+    margin-top: 1rem;
+    border-radius: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background-color: #AEFFD8;
+}
+
+.Label{
+    margin-top:30px;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+#jobdesc{
+    resize: none; /* Prevent resizing */
+    border-radius: 1.5rem; /* Set rounded corners */
+    width: 700px; /* Set the width */
+    height: 120px; /* Set the height */
+    margin-left: 2rem;
+    margin-top: 10px;
+    padding: 15px;
+    font-size: 15px;
+}
+
+#fileUpload {
+    display: none;
+}
+
+#documentPreview {
+    width: 100px; /* Reduced width of the iframe */
+    height: 110px; /* Reduced height of the iframe */
+    border: 2px solid #ccc; /* Border around the iframe */
+    margin-top: 10px; /* Margin for spacing */
+    margin-left: 2rem;
+}
+
+#uploadButton{
+    margin-right: 4rem;
+    height: 2.5rem;
+    width: 9rem;
+    border-radius: 1.25rem;
+    border: none;
+    background-color: #f26430;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+#uploadButton:hover
+{
+    background-color: #b33203;
+    transition: all;
+    transition-duration: 0.25s;
+}
+
+.Label button i{
+    margin-right: 1.25rem;
+    margin-left: 0.75rem;
+    font-size: 1rem;
+}
+
+.compatibility{
+    height: 2.75rem;
+    width: 13rem;
+    margin-top: 1.5rem;
+    margin-left: 100px;
+    align-self: center;
+    border-radius: 1.25rem;
+    border: none;
+    background-color: #f26430;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 800;
+    color: rgb(254, 253, 253);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.compatibility i{
+    margin-right: 0.8rem;
+    margin-left: 0.75rem;
+    font-size: 1rem;
+}
+
+.compatibility:hover
+{
+    background-color: #08ad06;
+    transition: all;
+    transition-duration: 0.25s;
+}
+
+#outputResult{
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #AEFFD8;
+
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 800;
+    font-size: 55px;
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumate - Job Compatibility Checker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/maincss.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/ResumateLogo.png') }}">
+    <script>
+        function handleFileUpload(event) {
+            const fileInput = event.target;
+            const file = fileInput.files[0];
+            if (file) {
+                const fileURL = URL.createObjectURL(file);
+                document.getElementById('documentPreview').src = fileURL;
+            }
+        }
+
+        function triggerFileInputClick() {
+            document.getElementById('fileUpload').click();
+        }
+    </script>
+</head>
+<body>
+    <div class="mainz">
+        <div class="top-bar">
+            <p>Welcome User</p>
+            <form action="{{ url_for('logout') }}" method="post">
+                <button id="logoutbutton" class="btn btn-danger">
+                    <i class="fas fa-sign-out-alt"></i>
+                    LOGOUT
+                </button>
+            </form>
+        </div>
+        
+        <div class="logo-output">
+            <div class="logo-space">
+                <img src="{{ url_for('static', filename='images/resumateanimatedlogolooped.gif') }}" width="100%" height="350" alt="Animated GIF">
+            </div>
+            <style>
+                .output-space {
+                    position: relative;
+                }
+            </style>
+            <div class="output-space">
+                <p class="op-title">Net Compatibility :</p>
+                <!-- <div id="outputResult"></div> -->
+                <div id="bufferingIcon" style="display: none;">
+                    <img src="{{ url_for('static', filename='images/buffericon.gif') }}" width="100" height="100" alt="Buffering">
+                </div>
+                <!-- Output result and buffering icon div initially hidden -->
+                <div id="outputResult" style="display: none;"></div>
+            </div>
+            
+        </div>
+
+        <div class="interactive-content">
+            <div class="text-1">
+                <p>Find The Right Talents For The Right Jobs!</p>
+            </div>
+            <div class="container-1">
+                <span class="Label">
+                    <label for="jobdesc">Job Description:</label>
+                </span>
+                <textarea id="jobdesc" name="jobdesc" rows="4" cols="50" placeholder="Enter Job Description..."></textarea>         
+                
+                <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+                    <span class="Label">
+                        <label for="uploadresume">Select Resume(.pdf format) from the local system :</label>
+                        <button type="button" id="uploadButton" onclick="triggerFileInputClick();">
+                            <i class="fa-solid fa-file-arrow-up"></i>
+                            Upload
+                        </button>
+                    </span>
+                    <input type="file" id="fileUpload" name="fileUpload" accept=".pdf" onchange="handleFileUpload(event)" style="display: none;">
+                    <iframe id="documentPreview" title="Document Preview"></iframe>
+                </form>
+                <button type="button" class="compatibility" id="checkCompatibilityButton">
+                    <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    Check Compatibility
+                </button>
+
+                <script>
+                    document.getElementById('checkCompatibilityButton').addEventListener('click', function() {
+                        
+                        document.getElementById("outputResult").style.display = "none";
+
+                        var jobDescription = document.getElementById('jobdesc').value;
+                        var fileInput = document.getElementById('fileUpload');
+
+                        if (jobDescription.trim() === "") 
+                        {
+                            document.getElementById('jobdesc').placeholder = "Please enter the job description before proceeding.";
+                        }
+                        else if (fileInput.files.length === 0)
+                        {
+                            alert("Please select a resume before proceeding.");
+                        }
+                        else
+                        {
+                            // Show buffering icon
+                            var bufferingIcon = document.getElementById("bufferingIcon");
+                            bufferingIcon.style.display = "block";
+                            bufferingIcon.style.position = "absolute";
+                            bufferingIcon.style.left = "50%";
+                            bufferingIcon.style.top = "60%";
+                            bufferingIcon.style.transform = "translate(-50%, -50%)";
+
+                            // Append the buffering icon to its container
+                            var outputSpace = document.querySelector('.output-space');
+                            outputSpace.appendChild(bufferingIcon)
+
+                            var formData = new FormData();
+                            formData.append('fileUpload', fileInput.files[0]);
+                            formData.append('jobDescription', jobDescription);
+                            
+                            var xhr = new XMLHttpRequest();
+                            xhr.onreadystatechange = function() {
+                                if (xhr.readyState == XMLHttpRequest.DONE) {
+                                    if (xhr.status == 200) {
+                                        var response = JSON.parse(xhr.responseText);
+                                        var matchPercentage = response.matchPercentage;
+                                        document.getElementById('outputResult').innerText = matchPercentage + "%";
+                                        // Hide buffering icon when result is ready
+                                        document.getElementById("bufferingIcon").style.display = "none";
+                                        // Show result
+                                        var outputresult = document.getElementById("outputResult");
+                                        outputresult.style.display = "block";
+                                        outputresult.style.position = "absolute";
+                                        outputresult.style.left = "50%";
+                                        outputresult.style.top = "60%";
+                                        outputresult.style.transform = "translate(-50%, -50%)";
+                                        outputSpace.appendChild(outputresult)
+                                    } else {
+                                        console.error("Error:", xhr.status, xhr.statusText);
+                                    }
+                                }
+                            };
+                            xhr.open('POST', '/process', true);
+                            xhr.send(formData);
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
