@@ -1,0 +1,3 @@
+Food Shazam is a web application that allows users to upload images of food items (restricted to 20 different food items) which is then predicted by the model to a corresponding food item. It also lists the basic ingredients used in the preparation of the food item and the nutritional information(per 100g). 
+The website has basic UI which allows all users in navigating through the site.
+The different food items that can be identified is given in the report or can be viewed in https://www.kaggle.com/datasets/l33tc0d3r/indian-food-classification.
