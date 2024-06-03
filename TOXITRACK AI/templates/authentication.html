@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+      @font-face {
+          font-family: "Extenda Trial 20 Micro";
+          src: url("https://www.yudiz.com/codepen/photography-banner/Extenda-20Micro.woff2") format("woff2");
+          font-weight: 20px;
+          font-style: normal;
+          font-display: swap;
+      }
+      body {
+          background-color: #fafafa;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          margin: 0;
+          font-style: normal;
+      }
+      html, body {
+          height: 100vh;
+      }
+      body {
+          overflow: hidden;
+      }
+      .radar {
+          --size: 350px;
+          --color: #15fcd8;
+          width: 600px;
+          height: 450px;
+          margin-left: 90px;
+          border: 3px solid var(--color);
+          border-radius: 50%;
+          background: linear-gradient(transparent 0 49.75%, var(--color) 49.75% 50%, transparent 50% 100%),
+                      linear-gradient(to right, transparent 0 49.75%, var(--color) 49.75% 50%, transparent 50% 100%),
+                      radial-gradient(transparent 0% 25%, var(--color) 25.5% 25.75%, transparent 26% 50%, var(--color) 50.5% 50.75%, transparent 51% 75%, var(--color) 75.5% 75.75%, transparent 76% 100%),
+                      radial-gradient(#00767211 0, #002421 65%),
+                      repeating-linear-gradient(to right, #0e817a77 0 1px, transparent 1.5px 25px),
+                      repeating-linear-gradient(#0e817a77 0 1px, transparent 1.5px 25px),
+                      radial-gradient(#007672 0, #002421 65%);
+          position: relative;
+          mix-blend-mode: difference;
+      }
+      .dot { 
+          width: var(--size);
+          height: var(--size);
+          background: var(--color);
+          border-radius: 50%;
+          position: absolute;
+          filter: blur(1px);
+          opacity: 0.5;
+          left: var(--x);
+          top: var(--y);
+          animation: disappear 1s ease-in-out forwards;
+      }
+      .radar::before {
+          --dark-color: color-mix(in srgb, var(--color), transparent 85%);
+          content: "";
+          display: block;
+          background: var(--dark-color);
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          position: absolute;
+          filter: blur(1px);
+          animation: pulse 1.25s infinite 0.25s;
+      }
+      .radar::after {
+          --radar-color: color-mix(in srgb, var(--color), transparent 50%);
+          content: "";
+          display: block;
+          width: 100%;
+          height: 100%;
+          background: conic-gradient(transparent 0, var(--radar-color) 0.1turn 0.15turn, transparent 0.25turn);
+          border-radius: 50%;
+          mix-blend-mode: plus-lighter;
+          animation: move-radar 5s linear infinite;
+      }
+      @keyframes move-radar {
+          from { rotate: -0.125turn; }
+          to { rotate: 0.875turn; }
+      }
+      @keyframes pulse {
+          0% { scale: 1; }
+          100% { scale: 1.15; opacity: 0; }
+      }
+      @keyframes disappear {
+          to { opacity: 0; }
+      }
+      .container {
+          max-width: 350px;
+          padding: 30px;
+          background-color: #ffffff;
+          border-radius: 5px;
+          box-shadow: 0px 0px 15px rgba(255, 254, 254, 0.1);
+          margin-right: 5%;
+          display: none;
+          animation: slideIn 8.5s ease
+      }
+      h2 {
+          color: #000000;
+          font-size: 28px;
+          font-weight: 500;
+          text-align: center;
+          margin-bottom: 25px;
+      }
+      .form-control {
+          border: 1px solid #dbdbdb;
+          border-radius: 3px;
+          padding: 8px 12px;
+          margin-bottom: 20px;
+          font-size: 14px;
+      }
+      .btn-primary {
+          background-color: #3897f0;
+          border-color: #1983e7;
+          width: 100%;
+          padding: 10px;
+          font-size: 14px;
+          border-radius: 3px;
+          font-weight: 600;
+      }
+      .separator {
+          margin: 20px 0;
+          text-align: center;
+          font-size: 14px;
+          color: #080505;
+      }
+      .login-link {
+          text-align: center;
+          color: #ffffff;
+          font-size: 14px;
+          font-weight: 600;
+          text-decoration: none;
+          display: block;
+          animation: slideIn 0.5s ease
+      }
+      .login-link:hover {
+          text-decoration: underline;
+      }
+      .header {
+          text-align: end;
+          margin-bottom: 25%;
+          margin-top: 16%;
+          margin-right: 7%;
+          font-family: "monument_extendedregular";
+      }
+      .container1 .btn-primary {
+          background-color: #d4f032;
+          border-color: #d4f032;
+          width: 10%;
+          padding: 10px;
+          font-size: 14px;
+          border-radius: 3px;
+          font-weight: 600;
+          margin-left: 83%;
+          margin-top: -45%;
+          color: #000000;
+      }
+      .header h1 {
+          font-family: 'Times New Roman', Times, serif;
+          font-size: 89px;
+          color: #ffffff;
+          font-weight: 700;
+          margin: 0;
+      }
+      .header p {
+          font-family: 'Times New Roman', Times, serif;
+          font-size: 23px;
+          color: #aeaaaa;
+          margin-top: 10px;
+      }
+      body {
+          display: flex;
+          align-items: center;
+          position: relative;
+          background-color: #212121;
+          min-height: 100vh;
+      }
+      .animation-container {
+          display: block;
+          position: relative;
+          width: 1500px;
+          max-width: 100%;
+          margin: 0 auto;
+      }
+      @import url(https://fonts.googleapis.com/css?family=Roboto:400,900italic,900,700italic,700,500italic,500,400italic,300italic,300,100italic,100);
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+h1, p, h2, h3, h4, ul, li, div {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: -webkit-box;
+  display: flex;
+  font-family: Roboto;
+}
+
+.loading-page {
+  background: #0d0d0d;
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+}
+.loading-page .counter {
+  text-align: center;
+}
+.loading-page .counter p {
+  font-size: 40px;
+  font-weight: 100;
+  color: #f60d54;
+}
+.loading-page .counter h1 {
+  color: white;
+  font-size: 60px;
+  margin-top: -10px;
+}
+.loading-page .counter hr {
+  background: #f60d54;
+  border: none;
+  height: 1px;
+}
+.loading-page .counter {
+  position: relative;
+  width: 200px;
+}
+.loading-page .counter h1.abs {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.loading-page .counter .color {
+  width: 0px;
+  overflow: hidden;
+  color: #f60d54;
+}
+
+  </style>
+</head>
+<body>
+  
+    <div class="loading-page">
+        <div class="counter">
+          <p>loading</p>
+          <h1>0%</h1>
+          <hr/>
+        </div>
+      </div>
+  <div class="radar" style="display:  none"></div>
+  <div class="animation-container" style="display: none;">
+      <div class="header">
+          <h1 class="hd">TOXITRACK AI</h1>
+          <p>Analyze and manage toxic comments with ease</p>
+      </div>
+      <div class="container1">
+          <button type="button" id="slideDownLogin" class="btn-primary">Login Now</button>
+      </div>
+  </div>
+  <div class="container" id="mainContent" style="display: none;">  
+      <h2>Login</h2>
+      <form name="login_form" id="login_form" method="post" action="#" enctype="multipart/form-data" >
+          <div class="form-group">
+              <label for="email">Email</label>
+              <input type="text" name="login_email" id="login_email" class="form-control" placeholder="Enter your email">
+          </div>
+          <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="login_password" id="login_password" class="form-control"  placeholder="Enter your password">
+          </div>
+          <button type="button" id="login" name="login" class="btn btn-primary">Login</button>
+      </form>
+      <div class="separator">OR</div>
+      <button type="button" id="showRegister" class="btn btn-primary">Register</button>
+      <a href="#" class="login-link">Forgot Password?</a>
+  </div>
+  <div class="container registration-box" style="display: none;">  
+      <h2>Register</h2>
+      <form name="registration_form" id="registration_form" method="post" action="#" enctype="multipart/form-data" >
+          <div class="form-group">
+              <label for="email">Email</label>
+              <input type="text" name="email" id="email" class="form-control" placeholder="Enter your email">
+          </div>
+          <div class="form-group">
+              <label for="password" >Password</label>
+              <input type="password" name="password" id="password" class="form-control"  placeholder="Enter your password">
+          </div>
+          <button type="button" id="register" name="register" class="btn btn-primary">Register Now</button>
+          <div class="separator"></div>
+          <button type="button" id="backToLogin" class="btn btn-primary">Back to Login</button>
+      </form>
+</div><!-- end container -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+ 
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const auth = getAuth();
+
+  // Get login and registration boxes
+  const loginBox = document.querySelector('.container');
+  const registrationBox = document.querySelector('.registration-box');
+  // Function to handle successful login
+  function handleLoginSuccess(user) {
+    console.log("User logged in:", user.email);
+    sendLoginRequest(user.email)
+    alert("Login successful!");
+    window.location.href="/index";
+  }
+  setTimeout(function() {
+            document.querySelector('.loading-page').style.display = 'none'; // Hide loading text
+            document.querySelector('.radar').style.display = 'block'; // Hide radar animation
+            document.querySelector('.animation-container').style.display = 'block';// Show main content
+        }, 1400);
+
+  // Event listener for the login button
+  // Event listener for the login button
+
+
+        $(document).ready(function() {
+            var counter = 0;
+            var c = 0;
+            var i = setInterval(function () {
+                $(".loading-page .counter h1").html(c + "%");
+                $(".loading-page .counter hr").css("width", c + "%");
+
+                counter++;
+                c++;
+
+                if (counter == 101) {
+                    clearInterval(i);
+                }
+            }, 10);
+        });
+document.getElementById("login").addEventListener("click", function() {
+  const email = document.getElementById("login_email").value;
+  const password = document.getElementById("login_password").value;
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then(userCredential => {
+      const user = userCredential.user;
+      handleLoginSuccess(user);
+      // Hide the radar animation
+    })
+    .catch(error => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log("Login error:", errorCode, errorMessage);
+      alert(errorMessage);  // Display a more specific error message
+    });
+});
+
+
+  // Event listener for the "Register" button
+  document.getElementById("showRegister").addEventListener("click", function() {
+      loginBox.style.display = 'none';
+      registrationBox.style.display = 'block';
+  });
+
+  // Event listener for the "Back to Login" button
+  document.getElementById("backToLogin").addEventListener("click", function() {
+      registrationBox.style.display = 'none';
+      loginBox.style.display = 'block';
+  });
+
+  //----- New Registration code start    
+  document.getElementById("register").addEventListener("click", function() {
+      var email =  document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      //For new registration
+      createUserWithEmailAndPassword(auth, email, password)//Firebase authentication library and is used to create a new user account with the provided email and password.
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        alert("Registration successfully!!");//callbackfunctiom
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        alert(error);
+      });         
+  });
+  async function sendLoginRequest(email) {
+    const url = '/login'; //address to were
+    const data = { email }; //json data
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`);
+      }
+      const responseData = await response.json();
+      console.log('Login response:', responseData);
+    } catch (error) {
+      console.error('Error sending login request:', error);
+    }
+  }
+  document.getElementById("slideDownLogin").addEventListener("click", function() {
+    document.querySelector('.radar').style.display = 'none'; 
+	  this.style.display = 'none';//login button disappers
+    // Select login box and slide it down
+    const loginBox = document.querySelector('.container');//class,ellement
+    loginBox.style.display = 'block';
+    loginBox.style.animation = 'slideDown 4s ease forwards';
+
+    // Select registration box and hide it
+    const registrationBox = document.querySelector('.registration-box');
+    registrationBox.style.display = 'none';
+
+    // Scroll the window to the login box
+    loginBox.scrollIntoView({ behavior: 'smooth' });
+});
+const radar = document.querySelector(".radar");
+
+//const beep = new Audio("https://cdn.freesound.org/previews/584/584179_1038806-lq.mp3");
+
+const addDot = () => {
+  if (Math.random() > 0.5) return;
+  const dot = document.createElement("div");
+  dot.classList.add("dot");
+  const x = Math.floor(Math.random() * 100);
+  const y = Math.floor(Math.random() * 100);
+  const size = 10 + Math.floor(Math.random() * 10);
+  dot.style.setProperty("--x", `${x}%`);
+  dot.style.setProperty("--y", `${y}%`);
+  dot.style.setProperty("--size", `${size}px`);
+  radar.append(dot);
+  setTimeout(() => dot.remove(), 2000);
+}
+
+setInterval(() => {
+  beep.currentTime = 0;
+  beep.play();
+  addDot();
+}, 1250);
+
+
+
+
+</script>
+</body>
+</html>

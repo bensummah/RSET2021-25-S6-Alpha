@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading - Toxitrack AI</title>
+  <style>
+ body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #000000, #000000); /* Changed gradient colors to black */
+      overflow: hidden;
+    }
+    .loading-text {
+      font-size: 80px;
+      font-weight: bold;
+      color: #fff;
+      text-align: center;
+      animation: pulse 1.5s infinite alternate;
+    }
+    @keyframes pulse {
+      0% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="loading-text">
+    TOXITRACK AI
+  </div>
+
+  <script>
+    // Wait for 5 seconds and then redirect to the main page
+    setTimeout(function() {
+      window.location.href = "authentication.html"; // Replace "main_page.html" with your main page URL
+    }, 1000); // 5000 milliseconds = 5 seconds
+  </script>
+</body>
+</html>
