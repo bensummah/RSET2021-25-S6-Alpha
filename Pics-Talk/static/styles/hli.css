@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    width: 100%;
+    background: linear-gradient(to top, rgba(236, 232, 232, 0)50%, rgba(243, 237, 237, 0)50%), url(pic1.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+  
+.navbar {
+    width: 1200px;
+    height: 75px;
+    margin: auto;
+}
+
+.icon {
+    width: 200px;
+    float: left;
+    height: 70px;
+}
+
+.logo {
+    color: #1621b7;
+    font-size: 35px;
+    font-family: Arial;
+    padding-left: 20px;
+    float: left;
+    padding-top: 10px;
+    margin-top: 5px
+}
+
+ul li a:hover {
+    color: #aa0e30;
+}
+
+.content {
+    width: 1200px;
+    height: auto;
+    margin: auto;
+    color: #fff;
+    position: relative;
+    text-align: center; /* Center align content */
+}
+
+.content .par {
+    padding-left: 20px;
+    padding-bottom: 25px;
+    font-family: Arial;
+    letter-spacing: 1.2px;
+    line-height: 30px;
+    color: black;
+    font-size: 24px;
+    text-align: center;
+}
+
+.content h1 {
+    font-family: 'Times New Roman';
+    font-size: 100px;
+    padding-left: 20px;
+    margin-top: 9%;
+    letter-spacing: 2px;
+    color: rgb(18, 16, 16);
+    text-align: center;
+}
+
+.caption-text {
+    color: black;
+    font-size: 25px;
+    text-align: center;
+}
+
+.button-container {
+    margin: 20px auto;
+    text-align: center; /* Center align button container */
+}
+
+.content .cn {
+    width: 200px; /* Increased width */
+    height: 60px; /* Increased height */
+    background: #35c717;
+    border: none;
+    margin-bottom: 20px; /* Increased margin-bottom */
+    font-size: 20px; /* Increased font size */
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .4s ease;
+    display: inline-block;
+}
+
+.content .cn a {
+    text-decoration: none;
+    color: #000000;
+    transition: .3s ease;
+    display: block;
+    line-height: 60px; /* Align text vertically */
+}
+
+.cn:hover {
+    background-color: #10978a;
+}
+
+.content span {
+    color: #150d06;
+    font-size: 65px;
+}
+
+.icons {
+    text-align: center; /* Center align icons */
+}
+
+.icons a {
+    text-decoration: none;
+    color: #fff;
+    display: inline-block;
+    margin: 0 10px; /* Add some margin between icons */
+}
+
+.icons ion-icon {
+    color: #150303;
+    font-size: 30px;
+    padding-left: 14px;
+    padding-top: 5px;
+    transition: 0.3s ease;
+}
+
+.icons ion-icon:hover {
+    color: #10906c;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../static/js/script.js" defer></script>
+    <link rel="stylesheet" href="../static/styles/sty.css">
+</head>
+<body>
+  <div class="main">
+    <div class="navbar">
+      <div class="icon">
+        <h2 class="logo">UPLOAD AN IMAGE</h2>
+      </div>
+      <div class="form">
+        <h2>Choose File</h2>
+        <label for="imageInput" class="custom-file-upload">
+          <input type="file" id="imageInput" accept="image/*" style="display: none;">
+          Choose File
+        </label>
+        <img id="uploadedImage" src="" alt="Uploaded Image" class="uploaded-image" style="display: none;">
+        <button type="button" class="generate-caption">Generate Captions</button>
+        <br>
+        <textarea id="captionText" rows="5" cols="30" readonly class="styled-textarea"></textarea>
+        <br>
+        <button type="button" class="play-audio">Play Audio Caption</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
