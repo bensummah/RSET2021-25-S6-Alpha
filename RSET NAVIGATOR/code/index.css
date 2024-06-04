@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.content {
+    max-width: 80%;
+}
+.logo-container {
+    margin-bottom: 20px;
+    animation: zoomIn 1s forwards; /* Apply zoomIn animation */
+}
+@keyframes zoomIn {
+    from {
+        transform: scale(0); /* Start with 0 scale */
+    }
+    to {
+        transform: scale(1); /* End with normal scale */
+    }
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+.scan-button {
+    background-color: #0047ab; /* Blue color */
+    color: white;
+    padding: 20px 40px; /* Doubled padding */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px; /* Doubled font size */
+    text-decoration: none; /* Remove underline */
+    display: inline-block;
+}
+.scan-button:hover {
+    background-color: #003c92; /* Darker blue on hover */
+}
