@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simplify Text</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/style1.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Simplify</h1>
+    <nav>
+      <a href="{{ url_for('about') }}">About</a>
+      <a href="#" id="servicesButton">Services</a>
+    </nav>
+  </header>
+  <main>
+    <div class="container">
+      <div class="input-section">
+        <h2>Simplify Your Text</h2>
+        <form id="simplifyForm" action="/" method="post">
+          <textarea id="inputText" name="inputText" placeholder="Copy or paste your input text here"></textarea>
+          <button id="convertButton" type="submit">Convert</button>
+          <button id="exampleButton" type="button">Text Example</button>
+          <button id="speechButton" type="button">Start Speaking</button> <!-- New button for speech recognition -->
+        </form>
+      </div>
+      <div class="output-section">
+        <h2>Simplified Text</h2>
+        <textarea id="outputText">{{ simplified_text }}</textarea>
+        <div class="clear-text">
+          <a href="#" id="clearButton">Clear Text</a>
+        </div>
+      </div>
+      <!-- Contact Us section will be added dynamically -->
+      <div id="contact-info" class="contact-info" style="display: none;">
+        <h3>Contact Us</h3>
+        <p>Phone: +91 8891229971</p>
+        <p>Email: simplify.ekm@gmail.com</p>
+      </div>
+    </div>
+  </main>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
