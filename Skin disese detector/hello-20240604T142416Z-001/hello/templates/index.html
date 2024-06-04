@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKIN DISEASE PREDICTOR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+        }
+        header {
+            background-color: #d77979f4;
+            color: #fff;
+            height: 70px;
+            padding: 20px 2px;
+            text-align: center;
+        }
+        
+       
+        section {
+            padding: 20px;
+        }
+        
+        .predictor-form {
+            text-align: left;
+            margin-top: 100px;
+            margin-left: 650px;
+        }
+        .predictor-form input[type="file"] {
+            display: none;
+        }
+        .custom-upload-button {
+            padding: 10px 20px;
+            background-color: #724caf;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .custom-upload-button:hover {
+            background-color: #724caf;
+        }
+        .filename-display {
+            margin-top: 20px;
+            font-weight: bold;
+            
+        }
+        .filename-display span {
+            color: #333;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SKIN DISEASE PREDICTOR</h1>
+    </header>
+    
+    <section>
+        <form class="predictor-form text-center" action='/predict', method="post" enctype="multipart/form-data">
+            {% if message %}
+            <div class="invalid-link" >{{ message }}</div>
+            {% endif %}
+            <label for="file-upload" class="custom-upload-button" type="file" name="file" >UPLOAD IMAGE</label>
+            <input type="file" id="file-upload" accept="image/jpeg" name='file' onchange="displayFileName()">
+            <div class="filename-display" id="filenameDisplay"></div><br><br>
+            <input class="btn btn-primary mt-3"type="submit" value="Predict" >
+        </form> 
+    </section>
+
+    <script>
+        function displayFileName() {
+            const fileInput = document.getElementById('file-upload');
+            const filenameDisplay = document.getElementById('filenameDisplay');
+            const errorDisplay = document.getElementById('errorDisplay');
+            const file = fileInput.files[0];
+            
+            if (file) {
+                if (file.type === 'image/jpeg') {
+                    filenameDisplay.innerHTML = 'Selected file: <span>' + file.name + '</span>';
+                    errorDisplay.innerHTML = ''; // Clear any previous error message
+                } else {
+                    // Display error message if the file is not a JPEG image
+                    filenameDisplay.innerHTML = '';
+                    errorDisplay.innerHTML = 'Error: Please select a JPEG image';
+                    fileInput.value = '';
+                }
+            } else {
+                filenameDisplay.innerHTML = '';
+                errorDisplay.innerHTML = 'NO'; // Clear any previous error message
+            }
+        }
+
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            window.location.href = 'result.html';
+        });
+    </script>    
+</body>
+</html>

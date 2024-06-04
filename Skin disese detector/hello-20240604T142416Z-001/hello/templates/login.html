@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - SKIN DISEASE PREDICTOR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f2f1; /* Light blue background color */
+        }
+        header {
+            background-color: #d77979f4;
+            color: #fff;
+            height: 70px;
+            padding: 20px 0;
+            text-align: center;
+        }
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 90px);
+        }
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .login-form {
+            margin-bottom: 20px; /* Add margin to create space between form and registration link */
+        }
+        .login-form input[type="text"],
+        .login-form input[type="password"],
+        .login-form input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .login-form input[type="submit"] {
+            background-color: #724caf;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .login-form input[type="submit"]:hover {
+            background-color: #5c3f89;
+        }
+        .register-link {
+            font-size: 14px;
+        }
+        .register-link a {
+            color: #724caf;
+            text-decoration: none;
+        }
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SKIN DISEASE PREDICTOR</h1>
+    </header>
+    
+    <section>
+        <div class="login-container">
+            <form class="login-form" id="loginForm" method="POST" action="/login">
+                <input type="text" id="username" name="username" placeholder="Username" required><br><br>
+                <input type="password" id="password" name="password" placeholder="Password" required><br><br>
+                <input type="submit" value="Login">
+            </form>
+            <!-- <div class="register-link">
+                Not registered yet? <a href="newuser.html">Register here</a>
+            </div>   -->
+            
+        </div>
+        
+    </section>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event){
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username === e_username && password === e_password) {
+                window.location.href ="index.html"; 
+            } else {
+                alert("Invalid username or password. Please try again.");
+                event.preventDefault(); 
+            }
+        
+        });
+        
+    </script>
+</body>
+</html>
