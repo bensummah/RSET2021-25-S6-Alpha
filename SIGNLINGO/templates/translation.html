@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Lingo Translator</title>
+<style>
+/* General and Background Styling */
+.translate {
+    background-color: #f0f0f0; /* light gray background */
+    background: url("{{ url_for('static', filename='original.png') }}") no-repeat center center;
+    background-size: cover;
+    height: 950px;
+    width: 1600px;
+    filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.25));
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+}
+
+/* Logo Styling */
+.logo {
+    width: 100px; /* Adjust the width as necessary */
+    height: auto; /* Maintain aspect ratio */
+    position: absolute;
+    top: 30px;
+    right: 20px;
+}
+
+/* Webcam and Output Sections Styling */
+.input, .output {
+    background-color: #ffffff;
+    height: 500px;
+    width: 500px;
+    border: 1.25px solid #000000;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.input {
+    right: 100px;
+    top: 200px;
+}
+
+.output {
+    left: 100px;
+    top: 200px;
+}
+
+/* Hide the video element */
+#videoElement {
+    display: none;
+}
+
+/* Description and Text Output Styling */
+.output-description {
+    position: absolute;
+    width: 200px;
+    top: 580px;
+    right: 250px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+.text-output {
+    width: 500px;
+    height: 50px;
+    position: absolute;
+    top: 720px; /* Adjust top as needed */
+    left: 100px; /* Match the right position of the input box */
+    font-size: 30px; /* Increase font size */
+    font-family: 'Arial', sans-serif;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Button Styling */
+.translate2 {
+    background-color: #ff9fd3; /* light pink */
+    color: #000000;
+    text-align: center;
+    vertical-align: text-top;
+    font-size: 24px;
+    font-family: 'Arial', sans-serif;
+    left: calc(50% - 100px); /* Center the button by subtracting half its width from the middle of the page */
+    top: 800px; /* Adjust top as needed */
+    width: 200px;
+    height: 60px;
+    position: absolute;
+    line-height: 52px; /* Center text vertically */
+    border: none;
+    cursor: pointer;
+    border-radius: 10px; /* Rounded corners with a radius of 10px */
+    display: none;
+}
+
+/* Select Dropdown Styling */
+.select-language-input {
+    position: absolute;
+    top: 160px;
+    left: 200px;
+    width: 300px;
+    font-size: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.select-language-output {
+    position: absolute;
+    top: 160px;
+    right: 200px;
+    width: 300px;
+    font-size: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.3/socket.io.min.js"></script>
+</head>
+<body>
+<div class="translate">
+    <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="SIGNLINGO" class="logo">
+    <select class="select-language-input" id="inputLanguageSelect">
+        <option value="" disabled selected>Select Input Language</option>
+        <option value="isl">Indian Sign Language (ISL)</option>
+        <option value="asl">American Sign Language (ASL)</option>
+    </select>
+    <select class="select-language-output" id="outputLanguageSelect">
+        <option value="" disabled selected>Select Output Language</option>
+        <option value="isl">Indian Sign Language (ISL)</option>
+        <option value="asl">American Sign Language (ASL)</option>
+    </select>
+    <div class="input" id="videoInput"></div> <!-- Removed the video element from here -->
+    <div class="output" id="videoOutput"></div>
+    <div class="output-description"></div>
+    <div class="text-output" id="textOutput"></div>
+    <button class="translate2" id="translateButton">Translate</button>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const videoElement = document.createElement('video'); // Create video element in JavaScript
+    videoElement.id = 'videoElement';
+    videoElement.autoplay = true;
+    document.body.appendChild(videoElement); // Append it to the body but keep it hidden
+
+    const videoOutput = document.getElementById('videoOutput');
+    const textOutput = document.getElementById('textOutput');
+    const inputContainer = document.getElementById('videoInput');
+    const socket = io();
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+            videoElement.srcObject = stream;
+            videoElement.play();
+        })
+        .catch(err => {
+            console.error("Error accessing webcam: " + err);
+        });
+
+    videoElement.addEventListener('play', () => {
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        
+        function sendFrame() {
+            canvas.width = videoElement.videoWidth;
+            canvas.height = videoElement.videoHeight;
+            context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+            const dataURL = canvas.toDataURL('image/jpeg');
+            const base64Image = dataURL.split(',')[1];
+            const inputLanguage = document.getElementById('inputLanguageSelect').value;
+            const outputLanguage = document.getElementById('outputLanguageSelect').value;
+            socket.emit('frame', { image: base64Image, input_language: inputLanguage, output_language: outputLanguage });
+        }
+
+        setInterval(sendFrame, 1000);  // Send frames every 1000ms
+    });
+
+    socket.on('response_frame', data => {
+        const img = new Image();
+        img.src = 'data:image/jpeg;base64,' + data.image;
+        videoOutput.innerHTML = '';
+        videoOutput.appendChild(img);
+        textOutput.textContent = `Prediction: ${data.label}`;
+
+        // Display the translated image if available
+        const translatedImageContainer = document.getElementById('videoInput');
+        if (translatedImageContainer) {
+            translatedImageContainer.innerHTML = ''; // Clear any previous content
+            if (data.image_data) {
+                const translatedImage = new Image();
+                translatedImage.src = `data:image/jpeg;base64,${data.image_data}`;
+                translatedImageContainer.appendChild(translatedImage);
+            }
+        }
+    });
+
+    document.getElementById('translateButton').addEventListener('click', () => {
+        const outputImage = videoOutput.querySelector('img');
+        if (outputImage) {
+            const inputImage = new Image();
+            inputImage.src = outputImage.src;
+            inputContainer.innerHTML = '';
+            inputContainer.appendChild(inputImage);
+        }
+    });
+});
+</script>
+</body>
+</html>
