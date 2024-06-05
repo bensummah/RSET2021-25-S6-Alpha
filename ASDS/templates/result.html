@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASDS Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+<body>
+
+    <div class="logo1">
+        <h1>AS</h1>
+    </div>
+    
+    <div class="logo2">
+        <h1>DS</h1>
+    </div>
+
+    <div class="box1">
+        <div class="container11">
+            <h1>RECYCLABLE</h1>
+        </div>
+        <br>
+        <div class="container7">
+            <ul>
+                {% if (prediction_text=='plastic') %}
+                <li><input type="checkbox" id="plastic-toggle" class="toggle-input">
+                    <label for="plastic-toggle" class="item">PLASTIC</label>
+                    <div class="hidden">Rs.10/kg</div>
+                </li><hr>
+                {% endif %}
+
+                {% if (prediction_text=='metal') %}
+                <li>
+                    <input type="checkbox" id="metal-toggle" class="toggle-input">
+                    <label for="metal-toggle" class="item">METAL</label>
+                    <div class="hidden">Rs.35/Kg</div>
+                </li>
+                <hr>
+                {% endif %}
+
+                {% if (prediction_text=='paper') %} <!-- emebedded js statement-->
+                <li>
+                    <input type="checkbox" id="paper-toggle" class="toggle-input">
+                    <label for="paper-toggle" class="item">PAPER</label>
+                    <div class="hidden">Rs.10/Kg</div>
+                </li>
+                <hr>
+                {% endif %}
+
+                {% if (prediction_text=='cardboard') %}
+                <li>
+                    <input type="checkbox" id="cardboard-toggle" class="toggle-input">
+                    <label for="cardboard-toggle" class="item">CARDBOARD</label>
+                    <div class="hidden">Rs.40/Kg</div>
+                </li>
+                <hr>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="box2">
+        <div class="container9">
+            <h1> NON RECYCLABLE</h1>
+        </div>
+        <br>
+        <div class="container10">
+            <ul>
+                {% if glass %}
+                <li><a href="{{ url_for('footwear') }}" class="item">GLASS</a></li><br>
+                {% endif %}
+              <!--  <li><a href="footwear.html" class="item">FOOTWEAR</a></li><br> -->
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

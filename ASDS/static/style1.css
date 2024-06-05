@@ -1,0 +1,181 @@
+@font-face 
+{
+    font-family: 'Nourd'; /* Name for the custom font */
+    src: url('/static/fonts/nourd_medium.ttf') format('truetype'); 
+}
+
+@font-face 
+{
+    font-family: 'Hatton';
+    src: url('/static/fonts/PP Hatton Bold 700.otf') format('truetype'); 
+}
+
+@font-face 
+{
+    font-family: 'Nourd Light';
+    src: url('/static/fonts/nourd_light.ttf') format('truetype'); 
+}
+
+
+body {
+    background-color: #1E1F24;
+    font-family: 'Hatton','Nourd'; 
+    font-weight: bolder;
+    color: white;
+    overflow-y: auto;
+    height: 100vh; /* Set full viewport height */
+    margin: 0; /* Remove default margin */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding: 0px;
+    position: relative; /* Make body position relative for absolute positioning */
+}
+
+
+.logo1
+{
+    font-family: 'Hatton'; 
+    position: absolute; 
+    top: 10px; 
+    right: 93%;
+    font-size: 20px;
+}
+
+.logo2
+{
+    font-family: 'Hatton'; 
+    position: absolute; 
+    top: 49px; 
+    right: 92.8%; 
+    font-size: 20px;
+}
+
+ul
+{
+    align-items: center;
+    list-style-type: none;
+    padding: 0px;
+}
+
+hr
+{
+    margin-top: 15px;
+    margin-bottom: 10px;
+    opacity: 50%;
+}
+
+.box1, .box2 
+{
+    flex: 1; /* Equal width for both boxes */
+    box-sizing: border-box; 
+    opacity: 90%;
+   
+}
+
+.box1
+{
+    margin: 0 80px 50px 0;
+    padding: 0 100px 110px 100px; 
+}
+
+.box2 
+{
+    flex-grow: 1; 
+    padding: 20px; 
+    box-sizing: border-box; /* Include padding in width calculation */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow */
+    min-height: 500px;
+    margin-top: 100px;
+    margin-right:80px;
+    margin-bottom: 50px;
+}
+
+
+.container11,.container9
+{
+    font-family: "Hatton";
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100%; /* Ensure containers take full height of their parent */
+}
+
+.container10 
+{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100%; 
+}
+
+.container10 ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+.container10 ul li
+{
+    padding-bottom: 10px;
+    font-size: larger;
+}
+
+.container7 ul li {
+    display: flex;
+    align-items: center;
+}
+
+.container7 ul li .hidden {
+    display: none;
+    margin-left: auto; /* Adjusted to push the hidden content to the right */
+    margin-right: 5px;
+}
+
+a
+{
+    text-decoration: none;
+    color: white;
+    font-family: "Nourd Light" ;
+    font-weight: lighter;
+}
+
+.container10 a:hover, .container10 a:active
+{
+    font-family: "Nourd";
+}
+
+.container7 a:hover, .container7 a:active
+{
+    font-family: "Nourd";
+}
+
+.container7 label, .container7 .hidden
+{
+    font-family: "Nourd Light" ;
+    font-weight: lighter;
+
+}
+
+/* Hide the checkboxes */
+.toggle-input {
+    display: none;
+}
+
+/* Style for the labels */
+.item {
+    cursor: pointer;
+}
+
+.toggle-input:checked ~ .hidden,
+.item:hover + .hidden {
+    display: block;
+}
+
+/* Hidden content initially hidden */
+.hidden {
+    display: none;
+}

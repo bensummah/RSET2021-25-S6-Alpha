@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASDS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="logo1">
+    <h1>AS</h1>
+</div>
+    
+<div class="logo2">
+    <h1>DS</h1>
+</div>
+
+<div class="option">
+    <nav>
+        <h4><a href="{{ url_for('home') }}" class="custom2">HOME</a></h4>
+        <h4><a href="{{ url_for('result') }}" class="custom1">BACK</a></h4>
+    </nav>
+</div>
+
+<div class="container0">
+    <div class="images">
+        <img class="one" src="{{ url_for('static', filename='3.jpeg') }}">
+
+        <img class="main" src="{{ url_for('static', filename='2.jpeg') }}">
+        <img class="two" src="{{ url_for('static', filename='1.jpeg') }}">
+    </div>
+    
+    <div class="info">
+        <h1>GLASS</h1><br>
+        <ul>
+            <li>Upcycling: repurpose the glass bottles into decorative items or practical objects.</li>
+            <li>Donation: donate them to thrift stores, community centers, or individuals who may find a use for them.</li>
+            <li>Glass Recycling Centers: these centers specialize in recycling glass and ensure that it is processed properly.</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

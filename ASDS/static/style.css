@@ -1,0 +1,201 @@
+@font-face {
+    font-family: 'Nourd';
+    src: url('/static/fonts/nourd_medium.ttf') format('truetype'); 
+}
+
+@font-face {
+    font-family: 'Hatton';
+    src: url('/static/fonts/PP Hatton Bold 700.otf') format('truetype'); 
+}
+
+@font-face {
+    font-family: 'Nourd Light';
+    src: url('/static/fonts/nourd_light.ttf') format('truetype'); 
+}
+
+body {
+    background-color: #1E1F24;
+    font-family: 'Hatton','Nourd'; 
+    font-weight: bolder;
+    color: white;
+    overflow-y: auto;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    position: relative;
+}
+
+.container h1 {
+    font-family: 'Hatton'; 
+    text-align: center;
+    font-size: 100px;
+    display: flex;
+    flex-direction: row;
+}
+
+.logo1 {
+    font-family: 'Hatton'; 
+    position: absolute; 
+    top: 10px; 
+    right: 93%;
+    font-size: 20px;
+}
+
+.logo2 {
+    font-family: 'Hatton'; 
+    position: absolute; 
+    top: 49px; 
+    right: 92.8%; 
+    font-size: 20px;
+}
+
+.container4 h1 {
+    font-family: 'Nourd Light'; 
+    position: absolute; 
+    top: 414px;
+    left: 49.6%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    opacity: 50%; 
+}
+
+.option a, .option button {
+    text-decoration: none;
+    color: white;
+    font-family: 'Nourd';
+    position: absolute;
+    top: 35px;
+    right: 65px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: larger;
+}
+
+.option a:hover, .option a:active, .option button {
+    text-decoration: underline;
+}
+
+.info {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.info h1 {
+    font-family: "Hatton";
+    font-size: 50px;
+}
+
+.info ul li {
+    font-family: "Nourd Light";
+    opacity: 50%;
+    list-style-type: none;
+}
+
+.main
+{
+    max-width: 700px;
+    max-height: 700px;
+}
+
+.two, .container{
+    max-width: 300px;
+    max-height: 300px;
+}
+
+
+.images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.images img {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.container0 {
+    font-family: 'Hatton'; 
+    text-align: center; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.top-right {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    font-family: 'Nourd';
+    color: white;
+    padding: 6px 12px;
+}
+
+.custom:hover, .custom-file-upload:hover {
+    text-decoration: underline;
+}
+
+.custom {
+    color: white;
+    font-family: 'Nourd';
+    background: none;
+    border: none;
+    font-weight: bolder;
+    font-size: 16px;
+    margin-right: 33px;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.custom2 {
+    color: white;
+    font-family: 'Nourd';
+    background: none;
+    border: none;
+    font-weight: bolder;
+    font-size: 16px;
+    margin-right: 120px;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.custom1 {
+    color: white;
+    font-family: 'Nourd';
+    background: none;
+    border: none;
+    font-weight: bolder;
+    font-size: 16px;
+    margin-right: 12px;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+#file-upload {
+    display: none;
+}
+
+#file-name {
+    display: none;
+}
+
+.image {
+    position: absolute;
+    max-width: 1500px;
+    max-height: 600px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

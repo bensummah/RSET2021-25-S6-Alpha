@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASDS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="logo1">
+        <h1>AS</h1>
+    </div>
+    
+    <div class="logo2">
+        <h1>DS</h1>
+    </div>
+
+    <h3>{{ prediction_text }}</h3>
+   
+    <img class="image" src="{{ url_for('send_image', filename=image_path.split('/')[-1]) }}" alt="Uploaded Image">
+    <div class="option">
+        <form action="{{ url_for('result') }}" method="POST">
+            <input type="hidden" name="prediction" value="{{ prediction_text }}">
+            <button type="submit" class="custom">NEXT</button>
+        </form>
+    </div>
+    
+</body>
+</html>

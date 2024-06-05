@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASDS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>ASDS</h1>
+        <div class="container4">
+            <h1>Automatic Scrap Detection System</h1>
+        </div>
+    </div>
+
+    <div class="logo1">
+        <h1>AS</h1>
+    </div>   
+    
+    <div class="logo2">
+        <h1>DS</h1>
+    </div>
+
+    <section class="top-right">
+        <form class="predictor-form" action="/" enctype="multipart/form-data" id="uploadForm" method="post">
+            <label for="file-upload" class="custom-file-upload" onclick="clearFileName()">
+                UPLOAD
+            </label>
+            <input class="form_control" type="file" name="file" id="file-upload" accept="image/jpeg" onchange="displayFileName()">
+            <button type="submit" class="custom">PREDICT</button>
+        </form>
+        <span id="file-name"></span>
+    </section>
+
+    <script>
+        function displayFileName() {
+            const fileInput = document.getElementById('file-upload');
+            const file = fileInput.files[0];
+            const fileNameDisplay = document.getElementById('file-name');
+            
+            if (file) {
+                if (file.type === 'image/jpeg') {
+                    fileNameDisplay.textContent = file.name;
+                } 
+                else {
+                    fileInput.value = '';
+                    fileNameDisplay.textContent = 'No file selected';
+                    alert('Please upload a JPEG image.');
+                }
+            } 
+        }
+
+        function clearFileName() {
+            const fileNameDisplay = document.getElementById('file-name');
+            fileNameDisplay.textContent = 'No file selected';
+        }
+    </script>
+</body>
+</html>

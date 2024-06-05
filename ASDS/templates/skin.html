@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Disease Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+        }
+        header {
+            background-color: #d77979f4;
+            color: #fff;
+            height: 70px;
+            padding: 20px 2px;
+            text-align: center;
+        }
+        
+       
+        section {
+            padding: 20px;
+        }
+        
+        .predictor-form {
+            text-align: center;
+            margin-top: 25px;
+            margin-left: 550px;
+        }
+        .predictor-form input[type="file"] {
+            display: none;
+        }
+        .custom-upload-button {
+            padding: 10px 20px;
+            background-color: #724caf;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .custom-upload-button:hover {
+            background-color: #724caf;
+        }
+        .filename-display {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .filename-display span {
+            color: #333;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Skin Disease Predictor</h1>
+    </header>
+    
+    <section>
+        <form class="predictor-form" action="#" enctype="multipart/form-data" id="uploadForm">
+            <label for="file-upload" class="custom-upload-button">Upload Image</label>
+            <input type="file" id="file-upload" accept="image/jpeg" onchange="displayFileName()">
+            <div class="filename-display" id="filenameDisplay"></div>
+            <div id="errorDisplay" style="color: red;"></div>
+            <br><br>
+            <input type="submit" value="Predict">
+        </form>
+    </section>
+
+    <script>
+        function displayFileName() {
+            const fileInput = document.getElementById('file-upload');
+            const filenameDisplay = document.getElementById('filenameDisplay');
+            const errorDisplay = document.getElementById('errorDisplay');
+            const file = fileInput.files[0];
+            
+            if (file) {
+                if (file.type === 'image/jpeg') {
+                    filenameDisplay.innerHTML = 'Selected file: <span>' + file.name + '</span>';
+                    errorDisplay.innerHTML = ''; // Clear any previous error message
+                } else {
+                    // Display error message if the file is not a JPEG image
+                    filenameDisplay.innerHTML = '';
+                    errorDisplay.innerHTML = 'Error: Please select a JPEG image';
+                    fileInput.value = '';
+                }
+            } else {
+                filenameDisplay.innerHTML = '';
+                errorDisplay.innerHTML = ''; // Clear any previous error message
+            }
+        }
+
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            // Prevent default form submission behavior
+            event.preventDefault();
+
+            window.location.href = 'result.html';
+        });
+    </script>
+</body>
+</html>

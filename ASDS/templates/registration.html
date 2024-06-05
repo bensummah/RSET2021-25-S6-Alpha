@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #ffc0cb; /* Pink background */
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .form-container {
+        background-color: #fff; /* White background */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 400px;
+        text-align: center;
+    }
+    input[type="text"],
+    input[type="password"] {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    input[type="submit"] {
+        background-color: #ff69b4; /* Pink button */
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    input[type="submit"]:hover {
+        background-color: #d14f89; /* Darker pink on hover */
+    }
+    .options {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+    .option {
+        flex: 1;
+        margin: 0 10px;
+        padding: 10px;
+        background-color: #ffefd5; /* Light yellow background */
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .option:hover {
+        background-color: #ffe4b2; /* Darker yellow on hover */
+    }
+    .option img {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="form-container">
+        <h2>Create Username and Password</h2>
+        <form action="login.html" method="post">
+            <input type="text" name="username" placeholder="Enter Username" required><br>
+            <input type="password" name="password" placeholder="Enter Password" required><br>
+            <input type="submit" value="Register">
+        </form>
+        <div class="register-symbol">
+        </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
